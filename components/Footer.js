@@ -38,3 +38,4 @@ const iconStyle = {
   color: 'inherit',
   fontWeight: 700
 }
+
