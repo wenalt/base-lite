@@ -1,26 +1,29 @@
 {
   "name": "base-lite",
   "private": true,
-  "version": "0.1.0",
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.2.4",
+    "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "viem": "^2.9.16",
-    "wagmi": "^2.12.4",
-    "@wagmi/core": "^2.13.2"
+    "viem": "^2.17.0",
+    "wagmi": "^2.12.0",
+    "@walletconnect/modal": "^2.7.0",
+    "@walletconnect/ethereum-provider": "^2.14.1",
+    "@reown/appkit": "^1.0.0",                // AppKit (new name for Web3Modal v3)
+    "@reown/appkit-wagmi": "^1.0.0",
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
-    "typescript": "^5.4.5",
-    "@types/react": "^18.2.66",
-    "@types/node": "^20.12.12",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.4"
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.5.0",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
   }
 }
