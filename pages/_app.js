@@ -1,7 +1,5 @@
 // pages/_app.js
 import Head from 'next/head'
-import { WagmiConfig } from 'wagmi'
-import { wagmiConfig } from '../lib/appkit'
 
 export default function App({ Component, pageProps }) {
   return (
