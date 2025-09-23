@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { appKit } from '@/lib/appkit'
+import { appKit } from '../lib/appkit' // was '@/lib/appkit'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
-    // system theme listener (no CSS needed)
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const apply = () => setIsDark(mq.matches)
     apply()
@@ -13,7 +12,6 @@ export default function Home() {
     return () => mq.removeEventListener?.('change', apply)
   }, [])
 
-  // Base-like blues (approx brand tones), no external CSS
   const baseBlue = '#0052FF'
   const baseBlueDark = '#0B1B3B'
   const textLight = '#FFFFFF'
@@ -53,7 +51,7 @@ export default function Home() {
           </div>
           <div style={{ marginLeft: 'auto' }}>
             <button
-              onClick={() => appKit.open?.()} // open AppKit modal
+              onClick={() => appKit.open?.()}
               style={{
                 padding: '8px 12px',
                 borderRadius: 10,
@@ -71,7 +69,7 @@ export default function Home() {
         <main>
           <div style={{ marginBottom: 10, fontWeight: 600 }}>Mini-app</div>
           <div style={{ opacity: 0.9, lineHeight: 1.5 }}>
-            Base-blue background, system light/dark, zero CSS files. This mirrors Celo Lite’s structure but tuned for Base.
+            Base-blue background, system light/dark, JS-only.
           </div>
         </main>
       </div>
