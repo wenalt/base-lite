@@ -1,0 +1,6 @@
+{
+  "name": "Base Lite",
+  "iconUrl": "/icons/app.png",
+  "homeUrl": "https://base-lite.vercel.app",
+  "description": "A lightweight Base experience (mini-hub)."
+}
