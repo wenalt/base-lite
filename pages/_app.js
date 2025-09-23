@@ -10,13 +10,11 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/baseicon.png" />
         <meta property="og:image" content="/baseog.png" />
         <meta name="theme-color" content="#0052FF" />
-        {/* Farcaster Mini-app meta kept compatible */}
+        {/* Farcaster Mini-app meta (kept for future compatibility) */}
         <meta name="fc:frame" content="vNext" />
         <meta name="fc:miniapp" content="v1" />
       </Head>
-      <WagmiConfig config={wagmiConfig}>
-        <Component {...pageProps} />
-      </WagmiConfig>
+      <Component {...pageProps} />
     </>
   )
 }
