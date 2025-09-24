@@ -80,7 +80,7 @@ export default function Home() {
         overflowX: 'hidden'
       }}
     >
-      {/* HEADER — transparent, like Celo Lite */}
+      {/* HEADER — inchangé */}
       <header
         style={{
           width: '100%',
@@ -92,7 +92,7 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* BL icon restored to the original image */}
+        {/* BL icon */}
         <img
           src="/baseicon.png"
           alt="BL"
@@ -101,7 +101,7 @@ export default function Home() {
           style={{ borderRadius: 8, display: 'block' }}
         />
 
-        {/* Title + subtitle (title in white) */}
+        {/* Title + subtitle */}
         <div style={{ lineHeight: 1.05, marginRight: 4 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
             Base Lite
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Superchain Eco pill moved LEFT (right after subtitle) */}
+        {/* Superchain Eco (à gauche du header, juste après le sous-titre) */}
         <a
           href="https://www.superchain.eco/"
           target="_blank"
@@ -131,7 +131,7 @@ export default function Home() {
           Connect Wallet
         </button>
 
-        {/* Farcaster (fixed URL) */}
+        {/* Farcaster */}
         <a
           href="https://farcaster.xyz/wenaltszn.eth"
           target="_blank"
@@ -162,61 +162,29 @@ export default function Home() {
         </button>
       </header>
 
-      {/* MAIN — unchanged for now */}
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 16
-        }}
-      >
+      {/* SECTION WALLET — remplace le contenu central, style “carte” comme Celo Lite */}
+      <section style={{ width: '100%' }}>
         <div
           style={{
             width: '100%',
-            maxWidth: 560,
+            maxWidth: 1100,
+            margin: '10px auto 0',
+            padding: '18px 14px',
             borderRadius: 16,
-            padding: 20,
             border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
             background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
             boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-            backdropFilter: 'blur(8px)'
+            backdropFilter: 'blur(8px)',
+            textAlign: 'center'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-            <img src="/baseicon.png" width={40} height={40} alt="Base Lite" style={{ borderRadius: 8 }} />
-            <div>
-              <div style={{ fontWeight: 800, fontSize: 18, color: '#fff' }}>Base Lite</div>
-              <div style={{ opacity: 0.9, fontSize: 12 }}>minihub Superchain Account Eco</div>
-            </div>
-            <div style={{ marginLeft: 'auto' }}>
-              <button
-                onClick={() => appKit.open?.()}
-                style={{
-                  padding: '8px 12px',
-                  borderRadius: 10,
-                  background: '#0A57FF',
-                  color: '#fff',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontWeight: 700
-                }}
-                aria-label="Connect wallet"
-              >
-                Connect
-              </button>
-            </div>
-          </div>
-
-          <div style={{ fontWeight: 700, marginBottom: 8 }}>Mini-app</div>
-          <div style={{ opacity: 0.95, lineHeight: 1.5 }}>
-            Transparent header, Base-blue background, Light/Dark/Auto theme. JS-only.
-          </div>
+          <div style={{ fontWeight: 800, marginBottom: 4 }}>Wallet</div>
+          <div style={{ opacity: 0.9 }}>Connect to show status.</div>
         </div>
-      </div>
+      </section>
 
       <Footer />
     </div>
   )
 }
+
