@@ -104,7 +104,7 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* Small “BL” badge */}
+        {/* BL badge */}
         <div
           aria-label="BL"
           style={{
@@ -122,9 +122,9 @@ export default function Home() {
           BL
         </div>
 
-        {/* Title + subtitle */}
+        {/* Title (white) + subtitle under it */}
         <div style={{ lineHeight: 1.05, marginRight: 4 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, color: '#000', mixBlendMode: 'screen' }}>
+          <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
             Base Lite
           </div>
           <div style={{ fontSize: 12, opacity: 0.9 }}>
@@ -182,7 +182,7 @@ export default function Home() {
         </button>
       </header>
 
-      {/* MAIN — Wallet section only (like Celo Lite), centered column */}
+      {/* MAIN — Wallet section only */}
       <main
         style={{
           width: '100%',
@@ -194,21 +194,11 @@ export default function Home() {
           gap: 16
         }}
       >
-        {/* Wallet card */}
         <section style={{ ...cardStyle, textAlign: 'center' }}>
           <div style={{ fontWeight: 800, marginBottom: 6 }}>Wallet</div>
           <div style={{ opacity: 0.9 }}>
             Connect to show status.
           </div>
-
-          {/* 
-            When AppKit is integrated, render:
-            - address (shortened)
-            - chain id / name (Base)
-            - balances
-            - tx counts (optional)
-            - daily check-in button (future)
-          */}
         </section>
       </main>
 
