@@ -1,13 +1,30 @@
 // pages/index.js
-import { useEffect, useState } from 'react'
-import Footer from '../components/Footer'    // <-- importe le footer
-import { appKit } from '../lib/appkit'      // si tu n'as pas encore lib/appkit, crée un stub minimal
+import { useEffect, useState, useMemo } from 'react'
+import Footer from '../components/Footer'
+import { appKit as importedAppKit } from '../lib/appkit' // expects a minimal stub in ../lib/appkit.js
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
 
+  // Fallback stub if ../lib/appkit exports nothing or undefined
+  const appKit = useMemo(
+    () =>
+      importedAppKit ?? {
+        open: () => {
+          // keeps build happy if not wired yet
+          if (typeof window !== 'undefined') {
+            console.warn('appKit.open() called but AppKit is not initialized.')
+            alert('Connect is not available yet.')
+          }
+        },
+      },
+    []
+  )
+
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia?.('(prefers-color-scheme: dark)')
+    if (!mq) return
     const apply = () => setIsDark(mq.matches)
     apply()
     mq.addEventListener?.('change', apply)
@@ -38,7 +55,7 @@ export default function Home() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 16
+          padding: 16,
         }}
       >
         <div
@@ -50,26 +67,36 @@ export default function Home() {
             border: `1px solid ${border}`,
             background: cardBg,
             boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-            backdropFilter: 'blur(6px)'
+            backdropFilter: 'blur(6px)',
           }}
         >
-          <header style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <header
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
             <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
             <div>
               <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
-              <div style={{ opacity: 0.85, fontSize: 12 }}>minihub Superchain Account Eco</div>
+              <div style={{ opacity: 0.85, fontSize: 12 }}>
+                minihub Superchain Account Eco
+              </div>
             </div>
             <div style={{ marginLeft: 'auto' }}>
               <button
-                onClick={() => appKit?.open?.()}
+                onClick={() => appKit.open?.()}
                 style={{
                   padding: '8px 12px',
                   borderRadius: 10,
                   background: isDark ? '#1A4DFF' : '#013BE0',
                   color: '#fff',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
+                aria-label="Connect wallet"
               >
                 Connect
               </button>
