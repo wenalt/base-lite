@@ -1,10 +1,10 @@
 // pages/index.js
 import { useEffect, useState } from 'react'
+import Footer from '../components/Footer'    // <-- importe le footer
+import { appKit } from '../lib/appkit'      // si tu n'as pas encore lib/appkit, crée un stub minimal
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
-  const [account, setAccount] = useState(null)
-  const [err, setErr] = useState(null)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -13,20 +13,6 @@ export default function Home() {
     mq.addEventListener?.('change', apply)
     return () => mq.removeEventListener?.('change', apply)
   }, [])
-
-  async function connectWallet() {
-    try {
-      setErr(null)
-      if (!window.ethereum) {
-        setErr('No wallet found. Install a browser wallet (e.g. Coinbase Wallet, MetaMask).')
-        return
-      }
-      const accs = await window.ethereum.request({ method: 'eth_requestAccounts' })
-      setAccount(accs?.[0] ?? null)
-    } catch (e) {
-      setErr(e?.message || 'Failed to connect')
-    }
-  }
 
   const baseBlue = '#0052FF'
   const baseBlueDark = '#0B1B3B'
@@ -42,54 +28,65 @@ export default function Home() {
         background: isDark ? baseBlueDark : baseBlue,
         color: isDark ? textDark : textLight,
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16
+        flexDirection: 'column',
       }}
     >
+      {/* page content */}
       <div
         style={{
-          width: '100%',
-          maxWidth: 560,
-          borderRadius: 16,
-          padding: 20,
-          border: `1px solid ${border}`,
-          background: cardBg,
-          boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-          backdropFilter: 'blur(6px)'
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 16
         }}
       >
-        <header style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-          <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
-            <div style={{ opacity: 0.85, fontSize: 12 }}>minihub Superchain Account Eco</div>
-          </div>
-          <div style={{ marginLeft: 'auto' }}>
-            <button
-              onClick={connectWallet}
-              style={{
-                padding: '8px 12px',
-                borderRadius: 10,
-                background: isDark ? '#1A4DFF' : '#013BE0',
-                color: '#fff',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              {account ? `${account.slice(0, 6)}…${account.slice(-4)}` : 'Connect'}
-            </button>
-          </div>
-        </header>
+        <div
+          style={{
+            width: '100%',
+            maxWidth: 560,
+            borderRadius: 16,
+            padding: 20,
+            border: `1px solid ${border}`,
+            background: cardBg,
+            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+            backdropFilter: 'blur(6px)'
+          }}
+        >
+          <header style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+            <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
+            <div>
+              <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
+              <div style={{ opacity: 0.85, fontSize: 12 }}>minihub Superchain Account Eco</div>
+            </div>
+            <div style={{ marginLeft: 'auto' }}>
+              <button
+                onClick={() => appKit?.open?.()}
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: 10,
+                  background: isDark ? '#1A4DFF' : '#013BE0',
+                  color: '#fff',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                Connect
+              </button>
+            </div>
+          </header>
 
-        <main>
-          <div style={{ marginBottom: 10, fontWeight: 600 }}>Mini-app</div>
-          <div style={{ opacity: 0.9, lineHeight: 1.5 }}>
-            Base-blue background, system light/dark, JS-only.
-          </div>
-          {err && <div style={{ marginTop: 12, color: '#FFD8D8' }}>{err}</div>}
-        </main>
+          <main>
+            <div style={{ marginBottom: 10, fontWeight: 600 }}>Mini-app</div>
+            <div style={{ opacity: 0.9, lineHeight: 1.5 }}>
+              Base-blue background, system light/dark, JS-only.
+            </div>
+          </main>
+        </div>
       </div>
+
+      {/* footer visible en bas */}
+      <Footer />
     </div>
   )
 }
