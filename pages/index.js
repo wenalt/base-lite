@@ -4,18 +4,16 @@ import Footer from '../components/Footer'
 import { appKit as importedAppKit } from '../lib/appkit' // safe stub
 
 export default function Home() {
-  // THEME ------------------------------------------------------------
+  // THEME
   const [theme, setTheme] = useState('auto') // 'light' | 'dark' | 'auto'
   const [systemDark, setSystemDark] = useState(false)
 
-  // restore saved theme
   useEffect(() => {
     if (typeof window === 'undefined') return
     const saved = localStorage.getItem('base-lite:theme')
     if (saved === 'light' || saved === 'dark' || saved === 'auto') setTheme(saved)
   }, [])
 
-  // watch system preference
   useEffect(() => {
     if (typeof window === 'undefined') return
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -26,22 +24,20 @@ export default function Home() {
   }, [])
 
   const isDark = theme === 'dark' || (theme === 'auto' && systemDark)
-
-  // cycle Light/Dark/Auto
   const cycleTheme = () => {
     const next = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light'
     setTheme(next)
     if (typeof window !== 'undefined') localStorage.setItem('base-lite:theme', next)
   }
 
-  // COLORS (lighter Base feel) --------------------------------------
-  const baseBlueLight = '#0A57FF'   // main background (light mode)
-  const baseBlueDark  = '#003AD1'   // main background (dark mode, still Base-y)
+  // COLORS
+  const baseBlueLight = '#0A57FF'
+  const baseBlueDark = '#003AD1'
   const textLight = '#FFFFFF'
-  const textDark  = '#E6E8F0'
+  const textDark = '#E6E8F0'
 
-  // BUTTON / CHIP styling helpers -----------------------------------
-  const pill = (filled=false) => ({
+  // Pills
+  const pill = (filled = false) => ({
     display: 'inline-flex',
     alignItems: 'center',
     gap: 8,
@@ -57,10 +53,9 @@ export default function Home() {
     color: isDark ? textDark : '#111',
     cursor: 'pointer'
   })
-
   const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
 
-  // SAFE AppKit stub -------------------------------------------------
+  // SAFE AppKit stub
   const appKit = useMemo(
     () =>
       importedAppKit ?? {
@@ -97,43 +92,80 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* Left: logo + title + small stack */}
-        <img
-          src="/baseicon.png"
-          alt="Base Lite"
-          width={36}
-          height={36}
-          style={{ borderRadius: 8, background: 'rgba(255,255,255,0.15)' }}
-        />
-        <div style={{ lineHeight: 1.05 }}>
+        {/* Small “BL” badge, like “CL” on Celo Lite */}
+        <div
+          aria-label="BL"
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            display: 'grid',
+            placeItems: 'center',
+            fontWeight: 800,
+            fontSize: 13,
+            color: '#000',
+            background: 'rgba(255,255,255,0.65)'
+          }}
+        >
+          BL
+        </div>
+
+        {/* Title + subtitle (as requested) */}
+        <div style={{ lineHeight: 1.05, marginRight: 4 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#000', mixBlendMode: 'screen' }}>
             Base Lite
           </div>
           <div style={{ fontSize: 12, opacity: 0.9 }}>
-            Ecosystem · Staking · Governance
+            Ecosystem · Superchain Eco
           </div>
         </div>
 
         {/* Spacer */}
         <div style={{ flex: 1 }} />
 
-        {/* Buttons group (pills), similar placement to Celo Lite */}
-        <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
+        {/* Standalone Superchain Eco logo (like CeloPG on CL) */}
+        <a
+          href="https://www.superchain.eco/"
+          target="_blank"
+          rel="noreferrer"
+          style={pill(true)}
+          aria-label="Superchain Eco"
+          title="Superchain Eco"
+        >
           <img src="/selogo.png" alt="SE" style={tinyIcon} />
+        </a>
+
+        {/* Connect */}
+        <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
           Connect Wallet
         </button>
 
-        <a href="https://warpcast.com/wenaltn" target="_blank" rel="noreferrer" style={pill()}>
+        {/* Farcaster (fixed URL) */}
+        <a
+          href="https://farcaster.xyz/wenaltszn.eth"
+          target="_blank"
+          rel="noreferrer"
+          style={pill()}
+          aria-label="Farcaster"
+        >
           <img src="/farcaster.png" alt="farcaster" style={tinyIcon} />
           @wenaltszn.eth
         </a>
 
-        <a href="https://github.com/wenalt" target="_blank" rel="noreferrer" style={pill()}>
+        {/* GitHub */}
+        <a
+          href="https://github.com/wenalt"
+          target="_blank"
+          rel="noreferrer"
+          style={pill()}
+          aria-label="GitHub"
+        >
           <img src="/github.png" alt="github" style={tinyIcon} />
           wenalt
         </a>
 
-        <button onClick={cycleTheme} style={pill()}>
+        {/* Theme toggle */}
+        <button onClick={cycleTheme} style={pill()} aria-label="Theme">
           <span role="img" aria-label="theme">🌗</span>
           {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
         </button>
@@ -188,7 +220,7 @@ export default function Home() {
 
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Mini-app</div>
           <div style={{ opacity: 0.95, lineHeight: 1.5 }}>
-            Base-blue background, transparent header, system Light/Dark with an Auto toggle. JS-only.
+            Transparent header, Base-blue background, Light/Dark/Auto theme. JS-only.
           </div>
         </div>
       </div>
