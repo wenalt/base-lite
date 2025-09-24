@@ -1,26 +1,23 @@
 // pages/index.js
 import { useEffect, useMemo, useState } from 'react'
 import Footer from '../components/Footer'
-import { appKit as importedAppKit } from '../lib/appkit' // expects ../lib/appkit.js stub
+import { appKit as importedAppKit } from '../lib/appkit' // safe stub
 
 export default function Home() {
-  // --- Theme (Light / Dark / Auto) ---
-  const [theme, setTheme] = useState('auto')
+  // THEME
+  const [theme, setTheme] = useState('auto') // 'light' | 'dark' | 'auto'
   const [systemDark, setSystemDark] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const saved = localStorage.getItem('base-lite:theme')
-    if (saved === 'light' || saved === 'dark' || saved === 'auto') {
-      setTheme(saved)
-    }
+    if (saved === 'light' || saved === 'dark' || saved === 'auto') setTheme(saved)
   }, [])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const mq = window.matchMedia?.('(prefers-color-scheme: dark)')
-    if (!mq) return
-    const apply = () => setSystemDark(mq.matches)
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    const apply = () => setSystemDark(!!mq.matches)
     apply()
     mq.addEventListener?.('change', apply)
     return () => mq.removeEventListener?.('change', apply)
@@ -30,18 +27,16 @@ export default function Home() {
   const cycleTheme = () => {
     const next = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light'
     setTheme(next)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('base-lite:theme', next)
-    }
+    if (typeof window !== 'undefined') localStorage.setItem('base-lite:theme', next)
   }
 
-  // --- Colors (Base blue, brighter) ---
-  const baseBlue = '#0A57FF'
+  // COLORS
+  const baseBlueLight = '#0A57FF'
   const baseBlueDark = '#003AD1'
   const textLight = '#FFFFFF'
   const textDark = '#E6E8F0'
 
-  // --- Pills (Celo Lite–style) ---
+  // Pills
   const pill = (filled = false) => ({
     display: 'inline-flex',
     alignItems: 'center',
@@ -58,8 +53,9 @@ export default function Home() {
     color: isDark ? textDark : '#111',
     cursor: 'pointer'
   })
+  const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
 
-  // --- Safe AppKit stub if not wired yet ---
+  // SAFE AppKit stub
   const appKit = useMemo(
     () =>
       importedAppKit ?? {
@@ -77,14 +73,14 @@ export default function Home() {
     <div
       style={{
         minHeight: '100vh',
-        background: isDark ? baseBlueDark : baseBlue,
+        background: isDark ? baseBlueDark : baseBlueLight,
         color: isDark ? textDark : textLight,
         display: 'flex',
         flexDirection: 'column',
         overflowX: 'hidden'
       }}
     >
-      {/* ===== Header (transparent, Celo Lite layout) ===== */}
+      {/* HEADER — transparent, like Celo Lite */}
       <header
         style={{
           width: '100%',
@@ -96,24 +92,38 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* BL icon (original) */}
-        <img
-          src="/baseicon.png"
-          alt="BL"
-          width={32}
-          height={32}
-          style={{ borderRadius: 8, display: 'block' }}
-        />
+        {/* Small “BL” badge, like “CL” on Celo Lite */}
+        <div
+          aria-label="BL"
+          style={{
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            display: 'grid',
+            placeItems: 'center',
+            fontWeight: 800,
+            fontSize: 13,
+            color: '#000',
+            background: 'rgba(255,255,255,0.65)'
+          }}
+        >
+          BL
+        </div>
 
-        {/* Title + subtitle (left-aligned) */}
+        {/* Title + subtitle (as requested) */}
         <div style={{ lineHeight: 1.05, marginRight: 4 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#000', mixBlendMode: 'screen' }}>
             Base Lite
           </div>
-          <div style={{ fontSize: 12, opacity: 0.9 }}>Ecosystem · Superchain Eco</div>
+          <div style={{ fontSize: 12, opacity: 0.9 }}>
+            Ecosystem · Superchain Eco
+          </div>
         </div>
 
-        {/* Superchain Eco logo — independent pill on the LEFT, like CeloPG */}
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Standalone Superchain Eco logo (like CeloPG on CL) */}
         <a
           href="https://www.superchain.eco/"
           target="_blank"
@@ -122,21 +132,15 @@ export default function Home() {
           aria-label="Superchain Eco"
           title="Superchain Eco"
         >
-          <img
-            src="/selogo.png"
-            alt="SE"
-            style={{ width: 18, height: 18, display: 'block', borderRadius: 4 }}
-          />
+          <img src="/selogo.png" alt="SE" style={tinyIcon} />
         </a>
 
-        {/* spacer */}
-        <div style={{ flex: 1 }} />
-
-        {/* Right-side controls */}
+        {/* Connect */}
         <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
           Connect Wallet
         </button>
 
+        {/* Farcaster (fixed URL) */}
         <a
           href="https://farcaster.xyz/wenaltszn.eth"
           target="_blank"
@@ -144,9 +148,11 @@ export default function Home() {
           style={pill()}
           aria-label="Farcaster"
         >
-          🟪 @wenaltszn.eth
+          <img src="/farcaster.png" alt="farcaster" style={tinyIcon} />
+          @wenaltszn.eth
         </a>
 
+        {/* GitHub */}
         <a
           href="https://github.com/wenalt"
           target="_blank"
@@ -154,19 +160,72 @@ export default function Home() {
           style={pill()}
           aria-label="GitHub"
         >
-          🐙 wenalt
+          <img src="/github.png" alt="github" style={tinyIcon} />
+          wenalt
         </a>
 
+        {/* Theme toggle */}
         <button onClick={cycleTheme} style={pill()} aria-label="Theme">
-          🌗 {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
+          <span role="img" aria-label="theme">🌗</span>
+          {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
         </button>
       </header>
 
-      {/* ===== Main minimized for now (we’ll replicate Celo Lite sections next) ===== */}
-      <div style={{ flex: 1 }} />
+      {/* MAIN — simple hero card for now */}
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 16
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            maxWidth: 560,
+            borderRadius: 16,
+            padding: 20,
+            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+            backdropFilter: 'blur(8px)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <img src="/baseicon.png" width={40} height={40} alt="Base Lite" style={{ borderRadius: 8 }} />
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 18, color: '#fff' }}>Base Lite</div>
+              <div style={{ opacity: 0.9, fontSize: 12 }}>minihub Superchain Account Eco</div>
+            </div>
+            <div style={{ marginLeft: 'auto' }}>
+              <button
+                onClick={() => appKit.open?.()}
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: 10,
+                  background: '#0A57FF',
+                  color: '#fff',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontWeight: 700
+                }}
+                aria-label="Connect wallet"
+              >
+                Connect
+              </button>
+            </div>
+          </div>
+
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>Mini-app</div>
+          <div style={{ opacity: 0.95, lineHeight: 1.5 }}>
+            Transparent header, Base-blue background, Light/Dark/Auto theme. JS-only.
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </div>
   )
 }
-
