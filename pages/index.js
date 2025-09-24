@@ -1,7 +1,7 @@
 // pages/index.js
 import { useEffect, useMemo, useState } from 'react'
 import Footer from '../components/Footer'
-import { appKit as importedAppKit, initAppKit } from '../lib/appkit' // safe stub + initializer
+import { appKit as importedAppKit } from '../lib/appkit' // safe stub
 
 export default function Home() {
   // THEME
@@ -21,11 +21,6 @@ export default function Home() {
     apply()
     mq.addEventListener?.('change', apply)
     return () => mq.removeEventListener?.('change', apply)
-  }, [])
-
-  // Initialize AppKit on client (no-op on server)
-  useEffect(() => {
-    initAppKit?.()
   }, [])
 
   const isDark = theme === 'dark' || (theme === 'auto' && systemDark)
@@ -192,4 +187,3 @@ export default function Home() {
     </div>
   )
 }
-
