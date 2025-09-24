@@ -12,8 +12,6 @@
     "next": "14.2.32",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-
-    // Align these three together
     "viem": "2.20.0",
     "wagmi": "2.14.6",
     "@reown/appkit": "1.0.0",
