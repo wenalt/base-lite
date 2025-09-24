@@ -7,10 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --no-inline-config --max-warnings=0 || true"
-    },
+  },
   "dependencies": {
     "next": "14.2.32",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "@reown/appkit": "1.0.3",
+    "@reown/appkit-adapter-wagmi": "1.1.0",
+    "wagmi": "2.12.10",
+    "viem": "2.17.8"
   }
 }
