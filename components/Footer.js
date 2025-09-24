@@ -12,8 +12,8 @@ export default function Footer() {
     backdropFilter: 'blur(6px)',
     cursor: 'pointer',
     transition: 'opacity .2s ease',
-    opacity: 0.95,
-  };
+    opacity: 0.95
+  }
 
   const img = {
     width: 20,
@@ -21,13 +21,13 @@ export default function Footer() {
     display: 'block',
     objectFit: 'cover',
     borderRadius: 6,
-    background: 'rgba(255,255,255,0.08)',
-  };
+    background: 'rgba(255,255,255,0.08)'
+  }
 
   const hoverHandlers = {
     onMouseEnter: (e) => (e.currentTarget.style.opacity = 1),
-    onMouseLeave: (e) => (e.currentTarget.style.opacity = 0.95),
-  };
+    onMouseLeave: (e) => (e.currentTarget.style.opacity = 0.95)
+  }
 
   return (
     <footer
@@ -36,7 +36,7 @@ export default function Footer() {
         display: 'flex',
         justifyContent: 'center',
         gap: 10,
-        padding: 14,
+        padding: 14
       }}
     >
       {/* Discord */}
@@ -48,7 +48,7 @@ export default function Footer() {
         aria-label="Discord"
         {...hoverHandlers}
       >
-        <img src="/discord.png?v=4" alt="Discord" style={img} />
+        <img src="/discord.png" alt="Discord" style={img} />
       </a>
 
       {/* X */}
@@ -60,7 +60,7 @@ export default function Footer() {
         aria-label="X"
         {...hoverHandlers}
       >
-        <img src="/x.jpg?v=4" alt="X" style={img} />
+        <img src="/x.jpg" alt="X" style={img} />
       </a>
 
       {/* Guild */}
@@ -72,8 +72,8 @@ export default function Footer() {
         aria-label="Guild"
         {...hoverHandlers}
       >
-        <img src="/guild.jpg?v=4" alt="Guild" style={img} />
+        <img src="/guild.jpg" alt="Guild" style={img} />
       </a>
     </footer>
-  );
+  )
 }
