@@ -1,48 +1,32 @@
 // components/Footer.js
-import { useState } from 'react';
-
-function ImageWithFallback({ sources = [], alt, style, fallback }) {
-  const [idx, setIdx] = useState(0);
-  const current = sources[idx];
-
-  if (!current && fallback) return fallback;
-
-  return (
-    <img
-      src={current}
-      alt={alt}
-      style={style}
-      onError={() => setIdx((i) => i + 1)}
-    />
-  );
-}
-
 export default function Footer() {
-  const linkStyle = {
+  const btn = {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '8px 10px',
+    justifyContent: 'center',
+    width: 36,
+    height: 36,
     borderRadius: 10,
-    textDecoration: 'none',
-    color: 'inherit',
-    opacity: 0.9,
     border: '1px solid rgba(255,255,255,0.15)',
     background: 'rgba(255,255,255,0.06)',
+    backdropFilter: 'blur(6px)',
+    cursor: 'pointer',
+    transition: 'opacity .2s ease',
+    opacity: 0.95,
   };
 
-  const imgStyle = {
+  const img = {
     width: 20,
     height: 20,
-    borderRadius: 6,
-    objectFit: 'cover',
     display: 'block',
+    objectFit: 'cover',
+    borderRadius: 6,
     background: 'rgba(255,255,255,0.08)',
   };
 
   const hoverHandlers = {
     onMouseEnter: (e) => (e.currentTarget.style.opacity = 1),
-    onMouseLeave: (e) => (e.currentTarget.style.opacity = 0.9),
+    onMouseLeave: (e) => (e.currentTarget.style.opacity = 0.95),
   };
 
   return (
@@ -60,51 +44,23 @@ export default function Footer() {
         href="https://discord.gg/buildonbase"
         target="_blank"
         rel="noreferrer"
-        title="Base Discord"
-        style={linkStyle}
+        style={btn}
+        aria-label="Discord"
         {...hoverHandlers}
       >
-        <img src="/discord.png?v=3" alt="Discord" style={imgStyle} />
-        <span style={{ fontSize: 12, fontWeight: 600 }}>Discord</span>
+        <img src="/discord.png?v=4" alt="Discord" style={img} />
       </a>
 
-      {/* X (Twitter) with resilient fallbacks */}
+      {/* X */}
       <a
         href="https://x.com/base"
         target="_blank"
         rel="noreferrer"
-        title="Base on X"
-        style={linkStyle}
+        style={btn}
+        aria-label="X"
         {...hoverHandlers}
       >
-        <ImageWithFallback
-          alt="X"
-          style={imgStyle}
-          sources={[
-            '/X.jpg?v=3',
-            '/x.jpg?v=3',
-            '/x.png?v=3',
-            '/x.svg?v=3',
-          ]}
-          fallback={
-            <div
-              style={{
-                ...imgStyle,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: 0.5,
-              }}
-              aria-label="X"
-              title="X"
-            >
-              X
-            </div>
-          }
-        />
-        <span style={{ fontSize: 12, fontWeight: 600 }}>X</span>
+        <img src="/x.jpg?v=4" alt="X" style={img} />
       </a>
 
       {/* Guild */}
@@ -112,14 +68,12 @@ export default function Footer() {
         href="https://guild.xyz/base"
         target="_blank"
         rel="noreferrer"
-        title="Guild"
-        style={linkStyle}
+        style={btn}
+        aria-label="Guild"
         {...hoverHandlers}
       >
-        <img src="/guild.jpg?v=3" alt="Guild" style={imgStyle} />
-        <span style={{ fontSize: 12, fontWeight: 600 }}>Guild</span>
+        <img src="/guild.jpg?v=4" alt="Guild" style={img} />
       </a>
     </footer>
   );
 }
-
