@@ -1,22 +1,21 @@
 // pages/index.js
 import { useEffect, useState, useMemo } from 'react'
 import Footer from '../components/Footer'
-import { appKit as importedAppKit } from '../lib/appkit' // expects a minimal stub in ../lib/appkit.js
+import { appKit as importedAppKit } from '../lib/appkit' // expects ../lib/appkit.js stub
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
 
-  // Fallback stub if ../lib/appkit exports nothing or undefined
+  // Safe fallback if AppKit isn’t wired yet
   const appKit = useMemo(
     () =>
       importedAppKit ?? {
         open: () => {
-          // keeps build happy if not wired yet
           if (typeof window !== 'undefined') {
             console.warn('appKit.open() called but AppKit is not initialized.')
             alert('Connect is not available yet.')
           }
-        },
+        }
       },
     []
   )
@@ -46,6 +45,7 @@ export default function Home() {
         color: isDark ? textDark : textLight,
         display: 'flex',
         flexDirection: 'column',
+        overflowX: 'hidden'
       }}
     >
       {/* page content */}
@@ -55,7 +55,7 @@ export default function Home() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 16,
+          padding: 16
         }}
       >
         <div
@@ -67,7 +67,7 @@ export default function Home() {
             border: `1px solid ${border}`,
             background: cardBg,
             boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-            backdropFilter: 'blur(6px)',
+            backdropFilter: 'blur(6px)'
           }}
         >
           <header
@@ -75,7 +75,7 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               gap: 12,
-              marginBottom: 12,
+              marginBottom: 12
             }}
           >
             <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
@@ -94,7 +94,7 @@ export default function Home() {
                   background: isDark ? '#1A4DFF' : '#013BE0',
                   color: '#fff',
                   border: 'none',
-                  cursor: 'pointer',
+                  cursor: 'pointer'
                 }}
                 aria-label="Connect wallet"
               >
