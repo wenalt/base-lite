@@ -13,13 +13,13 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
 
-    "@reown/appkit": "1.1.1",
-    "@reown/appkit-adapter-wagmi": "1.1.1",
+    "@reown/appkit": "1.0.2",
+    "@reown/appkit-adapter-wagmi": "1.0.2",
 
     "wagmi": "2.13.7",
     "viem": "2.21.9"
   },
   "engines": {
-    "node": ">=20.10.0"
+    "node": "20.x"
   }
 }
