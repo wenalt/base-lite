@@ -12,10 +12,13 @@
     "next": "14.2.32",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "viem": "2.20.0",
-    "wagmi": "2.14.6",
-    "@reown/appkit": "1.0.0",
-    "@reown/appkit-adapter-wagmi": "1.0.0"
+    "viem": "2.19.3",
+    "wagmi": "2.13.1",
+    "@reown/appkit": "1.1.0",
+    "@reown/appkit-adapter-wagmi": "1.0.2"
+  },
+  "overrides": {
+    "viem": "2.19.3"
   },
   "engines": {
     "node": ">=20.10.0"
