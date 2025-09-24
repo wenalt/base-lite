@@ -79,12 +79,38 @@ export default function Home() {
             }}
           >
             <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
-              <div style={{ opacity: 0.85, fontSize: 12 }}>
-                minihub Superchain Account Eco
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
+                <div style={{ opacity: 0.85, fontSize: 12 }}>
+                  minihub Superchain Account Eco
+                </div>
               </div>
+
+              {/* Superchain Eco logo (small, clickable) */}
+              <a
+                href="https://www.superchain.eco"
+                target="_blank"
+                rel="noreferrer"
+                title="Superchain Eco"
+                style={{ display: 'inline-flex' }}
+              >
+                <img
+                  src="/selogo.png"
+                  alt="Superchain Eco"
+                  width={20}
+                  height={20}
+                  style={{
+                    display: 'block',
+                    borderRadius: 6,
+                    opacity: 0.95
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = '0.95')}
+                />
+              </a>
             </div>
+
             <div style={{ marginLeft: 'auto' }}>
               <button
                 onClick={() => appKit.open?.()}
@@ -117,4 +143,3 @@ export default function Home() {
     </div>
   )
 }
-
