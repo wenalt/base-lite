@@ -1,12 +1,66 @@
 // pages/index.js
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Footer from '../components/Footer'
-import { appKit as importedAppKit } from '../lib/appkit' // expects ../lib/appkit.js stub
+import { appKit as importedAppKit } from '../lib/appkit' // safe stub
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(false)
+  // THEME ------------------------------------------------------------
+  const [theme, setTheme] = useState('auto') // 'light' | 'dark' | 'auto'
+  const [systemDark, setSystemDark] = useState(false)
 
-  // Safe fallback if AppKit isn’t wired yet
+  // restore saved theme
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const saved = localStorage.getItem('base-lite:theme')
+    if (saved === 'light' || saved === 'dark' || saved === 'auto') setTheme(saved)
+  }, [])
+
+  // watch system preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    const apply = () => setSystemDark(!!mq.matches)
+    apply()
+    mq.addEventListener?.('change', apply)
+    return () => mq.removeEventListener?.('change', apply)
+  }, [])
+
+  const isDark = theme === 'dark' || (theme === 'auto' && systemDark)
+
+  // cycle Light/Dark/Auto
+  const cycleTheme = () => {
+    const next = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light'
+    setTheme(next)
+    if (typeof window !== 'undefined') localStorage.setItem('base-lite:theme', next)
+  }
+
+  // COLORS (lighter Base feel) --------------------------------------
+  const baseBlueLight = '#0A57FF'   // main background (light mode)
+  const baseBlueDark  = '#003AD1'   // main background (dark mode, still Base-y)
+  const textLight = '#FFFFFF'
+  const textDark  = '#E6E8F0'
+
+  // BUTTON / CHIP styling helpers -----------------------------------
+  const pill = (filled=false) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 8,
+    height: 36,
+    padding: '0 12px',
+    borderRadius: 12,
+    fontSize: 14,
+    fontWeight: 600,
+    border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.14)'}`,
+    background: filled
+      ? (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.08)')
+      : 'transparent',
+    color: isDark ? textDark : '#111',
+    cursor: 'pointer'
+  })
+
+  const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
+
+  // SAFE AppKit stub -------------------------------------------------
   const appKit = useMemo(
     () =>
       importedAppKit ?? {
@@ -20,35 +74,72 @@ export default function Home() {
     []
   )
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const mq = window.matchMedia?.('(prefers-color-scheme: dark)')
-    if (!mq) return
-    const apply = () => setIsDark(mq.matches)
-    apply()
-    mq.addEventListener?.('change', apply)
-    return () => mq.removeEventListener?.('change', apply)
-  }, [])
-
-  const baseBlue = '#0052FF'
-  const baseBlueDark = '#0B1B3B'
-  const textLight = '#FFFFFF'
-  const textDark = '#E6E8F0'
-  const cardBg = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.10)'
-  const border = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.22)'
-
   return (
     <div
       style={{
         minHeight: '100vh',
-        background: isDark ? baseBlueDark : baseBlue,
+        background: isDark ? baseBlueDark : baseBlueLight,
         color: isDark ? textDark : textLight,
         display: 'flex',
         flexDirection: 'column',
         overflowX: 'hidden'
       }}
     >
-      {/* page content */}
+      {/* HEADER — transparent, like Celo Lite */}
+      <header
+        style={{
+          width: '100%',
+          maxWidth: 1100,
+          margin: '0 auto',
+          padding: '16px 16px 6px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12
+        }}
+      >
+        {/* Left: logo + title + small stack */}
+        <img
+          src="/baseicon.png"
+          alt="Base Lite"
+          width={36}
+          height={36}
+          style={{ borderRadius: 8, background: 'rgba(255,255,255,0.15)' }}
+        />
+        <div style={{ lineHeight: 1.05 }}>
+          <div style={{ fontSize: 22, fontWeight: 800, color: '#000', mixBlendMode: 'screen' }}>
+            Base Lite
+          </div>
+          <div style={{ fontSize: 12, opacity: 0.9 }}>
+            Ecosystem · Staking · Governance
+          </div>
+        </div>
+
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Buttons group (pills), similar placement to Celo Lite */}
+        <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
+          <img src="/selogo.png" alt="SE" style={tinyIcon} />
+          Connect Wallet
+        </button>
+
+        <a href="https://warpcast.com/wenaltn" target="_blank" rel="noreferrer" style={pill()}>
+          <img src="/farcaster.png" alt="farcaster" style={tinyIcon} />
+          @wenaltszn.eth
+        </a>
+
+        <a href="https://github.com/wenalt" target="_blank" rel="noreferrer" style={pill()}>
+          <img src="/github.png" alt="github" style={tinyIcon} />
+          wenalt
+        </a>
+
+        <button onClick={cycleTheme} style={pill()}>
+          <span role="img" aria-label="theme">🌗</span>
+          {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
+        </button>
+      </header>
+
+      {/* MAIN — simple hero card for now */}
       <div
         style={{
           flex: 1,
@@ -64,81 +155,44 @@ export default function Home() {
             maxWidth: 560,
             borderRadius: 16,
             padding: 20,
-            border: `1px solid ${border}`,
-            background: cardBg,
-            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-            backdropFilter: 'blur(6px)'
+            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+            backdropFilter: 'blur(8px)'
           }}
         >
-          <header
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              marginBottom: 12
-            }}
-          >
-            <img src="/baseicon.png" alt="Base Lite" width={40} height={40} />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div>
-                <div style={{ fontWeight: 700, fontSize: 18 }}>Base Lite</div>
-                <div style={{ opacity: 0.85, fontSize: 12 }}>
-                  minihub Superchain Account Eco
-                </div>
-              </div>
-
-              {/* Superchain Eco logo (small, clickable) */}
-              <a
-                href="https://www.superchain.eco"
-                target="_blank"
-                rel="noreferrer"
-                title="Superchain Eco"
-                style={{ display: 'inline-flex' }}
-              >
-                <img
-                  src="/selogo.png"
-                  alt="Superchain Eco"
-                  width={20}
-                  height={20}
-                  style={{
-                    display: 'block',
-                    borderRadius: 6,
-                    opacity: 0.95
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = '0.95')}
-                />
-              </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <img src="/baseicon.png" width={40} height={40} alt="Base Lite" style={{ borderRadius: 8 }} />
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 18, color: '#fff' }}>Base Lite</div>
+              <div style={{ opacity: 0.9, fontSize: 12 }}>minihub Superchain Account Eco</div>
             </div>
-
             <div style={{ marginLeft: 'auto' }}>
               <button
                 onClick={() => appKit.open?.()}
                 style={{
                   padding: '8px 12px',
                   borderRadius: 10,
-                  background: isDark ? '#1A4DFF' : '#013BE0',
+                  background: '#0A57FF',
                   color: '#fff',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: 700
                 }}
                 aria-label="Connect wallet"
               >
                 Connect
               </button>
             </div>
-          </header>
+          </div>
 
-          <main>
-            <div style={{ marginBottom: 10, fontWeight: 600 }}>Mini-app</div>
-            <div style={{ opacity: 0.9, lineHeight: 1.5 }}>
-              Base-blue background, system light/dark, JS-only.
-            </div>
-          </main>
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>Mini-app</div>
+          <div style={{ opacity: 0.95, lineHeight: 1.5 }}>
+            Base-blue background, transparent header, system Light/Dark with an Auto toggle. JS-only.
+          </div>
         </div>
       </div>
 
-      {/* footer visible en bas */}
       <Footer />
     </div>
   )
