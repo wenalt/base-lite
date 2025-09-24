@@ -92,38 +92,26 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* Small “BL” badge, like “CL” on Celo Lite */}
-        <div
-          aria-label="BL"
-          style={{
-            width: 32,
-            height: 32,
-            borderRadius: 8,
-            display: 'grid',
-            placeItems: 'center',
-            fontWeight: 800,
-            fontSize: 13,
-            color: '#000',
-            background: 'rgba(255,255,255,0.65)'
-          }}
-        >
-          BL
-        </div>
+        {/* BL icon restored to the original image */}
+        <img
+          src="/baseicon.png"
+          alt="BL"
+          width={32}
+          height={32}
+          style={{ borderRadius: 8, display: 'block' }}
+        />
 
-        {/* Title + subtitle (as requested) */}
+        {/* Title + subtitle (title in white) */}
         <div style={{ lineHeight: 1.05, marginRight: 4 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, color: '#000', mixBlendMode: 'screen' }}>
+          <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
             Base Lite
           </div>
           <div style={{ fontSize: 12, opacity: 0.9 }}>
-            Ecosystem · Superchain Eco
+            Ecosystem - Superchain Eco
           </div>
         </div>
 
-        {/* Spacer */}
-        <div style={{ flex: 1 }} />
-
-        {/* Standalone Superchain Eco logo (like CeloPG on CL) */}
+        {/* Superchain Eco pill moved LEFT (right after subtitle) */}
         <a
           href="https://www.superchain.eco/"
           target="_blank"
@@ -134,6 +122,9 @@ export default function Home() {
         >
           <img src="/selogo.png" alt="SE" style={tinyIcon} />
         </a>
+
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
 
         {/* Connect */}
         <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
@@ -171,7 +162,7 @@ export default function Home() {
         </button>
       </header>
 
-      {/* MAIN — simple hero card for now */}
+      {/* MAIN — unchanged for now */}
       <div
         style={{
           flex: 1,
