@@ -69,18 +69,6 @@ export default function Home() {
     []
   )
 
-  // Card style (like Celo Lite sections)
-  const cardStyle = {
-    width: '100%',
-    borderRadius: 16,
-    padding: '22px 16px',
-    border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
-    background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.92)',
-    color: isDark ? textDark : '#111',
-    boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-    backdropFilter: 'blur(8px)'
-  }
-
   return (
     <div
       style={{
@@ -104,37 +92,26 @@ export default function Home() {
           gap: 12
         }}
       >
-        {/* BL badge */}
-        <div
-          aria-label="BL"
-          style={{
-            width: 32,
-            height: 32,
-            borderRadius: 8,
-            display: 'grid',
-            placeItems: 'center',
-            fontWeight: 800,
-            fontSize: 13,
-            color: '#000',
-            background: 'rgba(255,255,255,0.65)'
-          }}
-        >
-          BL
-        </div>
+        {/* BL icon restored to the original image */}
+        <img
+          src="/baseicon.png"
+          alt="BL"
+          width={32}
+          height={32}
+          style={{ borderRadius: 8, display: 'block' }}
+        />
 
-        {/* Title (white) + subtitle under it */}
+        {/* Title + subtitle (title in white) */}
         <div style={{ lineHeight: 1.05, marginRight: 4 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
             Base Lite
           </div>
           <div style={{ fontSize: 12, opacity: 0.9 }}>
-            Ecosystem · Superchain Eco
+            Ecosystem - Superchain Eco
           </div>
         </div>
 
-        <div style={{ flex: 1 }} />
-
-        {/* Superchain Eco logo (independent) */}
+        {/* Superchain Eco pill moved LEFT (right after subtitle) */}
         <a
           href="https://www.superchain.eco/"
           target="_blank"
@@ -146,12 +123,15 @@ export default function Home() {
           <img src="/selogo.png" alt="SE" style={tinyIcon} />
         </a>
 
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
         {/* Connect */}
         <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
           Connect Wallet
         </button>
 
-        {/* Farcaster */}
+        {/* Farcaster (fixed URL) */}
         <a
           href="https://farcaster.xyz/wenaltszn.eth"
           target="_blank"
@@ -182,25 +162,59 @@ export default function Home() {
         </button>
       </header>
 
-      {/* MAIN — Wallet section only */}
-      <main
+      {/* MAIN — unchanged for now */}
+      <div
         style={{
-          width: '100%',
-          maxWidth: 1100,
-          margin: '12px auto 28px',
-          padding: '0 16px',
+          flex: 1,
           display: 'flex',
-          flexDirection: 'column',
-          gap: 16
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 16
         }}
       >
-        <section style={{ ...cardStyle, textAlign: 'center' }}>
-          <div style={{ fontWeight: 800, marginBottom: 6 }}>Wallet</div>
-          <div style={{ opacity: 0.9 }}>
-            Connect to show status.
+        <div
+          style={{
+            width: '100%',
+            maxWidth: 560,
+            borderRadius: 16,
+            padding: 20,
+            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+            backdropFilter: 'blur(8px)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <img src="/baseicon.png" width={40} height={40} alt="Base Lite" style={{ borderRadius: 8 }} />
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 18, color: '#fff' }}>Base Lite</div>
+              <div style={{ opacity: 0.9, fontSize: 12 }}>minihub Superchain Account Eco</div>
+            </div>
+            <div style={{ marginLeft: 'auto' }}>
+              <button
+                onClick={() => appKit.open?.()}
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: 10,
+                  background: '#0A57FF',
+                  color: '#fff',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontWeight: 700
+                }}
+                aria-label="Connect wallet"
+              >
+                Connect
+              </button>
+            </div>
           </div>
-        </section>
-      </main>
+
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>Mini-app</div>
+          <div style={{ opacity: 0.95, lineHeight: 1.5 }}>
+            Transparent header, Base-blue background, Light/Dark/Auto theme. JS-only.
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </div>
