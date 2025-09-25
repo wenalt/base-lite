@@ -2,7 +2,7 @@
 
 > mini-hub for the **Superchain Eco** — education-first, Base-aligned guides, badge walkthroughs, and low-friction actions (daily check-in, onchain routines)
 
-[![Deploy](https://therealsujitk-vercel-badge.vercel.app/?app=base-lite)](https://base-lite.vercel.app/)
+[![Deploy](https://therealsujitk-vercel-badge.vercel.app/?app=base-lite)](https://base-lite-pi.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](#license)
 
 ## What is it?
