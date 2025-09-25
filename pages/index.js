@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import ConnectButton from '../components/ConnectButton'
+import WalletStatus from '../components/WalletStatus'
 
 export default function Home() {
   // THEME
@@ -164,6 +165,7 @@ export default function Home() {
         >
           <div style={{ fontWeight: 800, marginBottom: 4 }}>Wallet</div>
           <div style={{ opacity: 0.9 }}>Connect to show status.</div>
+          <WalletStatus />
         </div>
       </section>
 
