@@ -118,7 +118,7 @@ export default function DailyCheckin() {
       {isConnected && onBase && (
         <div style={{ fontSize: 14, opacity: 0.95 }}>
           Streak: <strong>{Number(streak)}</strong>
-          {canDo === false && <span> — déjà fait aujourd’hui ✅</span>}
+          {canDo === false && <span> — keep it up</span>}
         </div>
       )}
     </div>
