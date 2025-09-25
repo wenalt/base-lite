@@ -113,9 +113,7 @@ export default function Home() {
         <div style={{ flex: 1 }} />
 
         {/* Connect (AppKit button) */}
-        <span style={pill(true)}>
-          <ConnectButton />
-        </span>
+        <ConnectButton />
 
         {/* Farcaster */}
         <a
@@ -173,4 +171,3 @@ export default function Home() {
     </div>
   )
 }
-
