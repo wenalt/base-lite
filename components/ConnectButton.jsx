@@ -1,28 +1,41 @@
 // components/ConnectButton.jsx
 import { useEffect, useState } from 'react'
+import { useAccount } from 'wagmi'
 import { appKit } from '../lib/appkit'
 
 export default function ConnectButton() {
+  const { isConnected } = useAccount()
   const [ready, setReady] = useState(false)
 
+  // Attendre que le web component <appkit-button> soit défini côté client
   useEffect(() => {
-    // le custom element est défini côté client quand AppKit est initialisé
-    if (typeof window !== 'undefined') {
-      const ok = !!customElements.get('appkit-button')
-      setReady(ok)
-      if (!ok) {
-        // ré-essaie au prochain tick (rare, mais utile sur Next)
-        setTimeout(() => setReady(!!customElements.get('appkit-button')), 0)
-      }
+    if (typeof window === 'undefined') return
+    const has = () => !!customElements.get('appkit-button')
+    if (has()) {
+      setReady(true)
+      return
     }
+    // petit polling court pour Next (rare mais utile)
+    const id = setInterval(() => {
+      if (has()) {
+        setReady(true)
+        clearInterval(id)
+      }
+    }, 100)
+    return () => clearInterval(id)
   }, [])
 
+  // Si connecté, on montre le bouton compte natif d’AppKit
+  if (isConnected) {
+    return <appkit-account-button />
+  }
+
+  // Sinon, si le web component est prêt : bouton Connect natif d’AppKit
   if (ready) {
-    // web component natif AppKit (gère texte/état/compte)
     return <appkit-button />
   }
 
-  // Fallback: un bouton simple qui ouvre quand même le modal
+  // Fallback (très court) si AppKit n'est pas prêt: ouvre quand même le modal
   return (
     <button
       onClick={() => appKit?.open?.()}
@@ -47,3 +60,4 @@ export default function ConnectButton() {
     </button>
   )
 }
+
