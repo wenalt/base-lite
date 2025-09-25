@@ -34,11 +34,12 @@ It mirrors Celo Lite’s minimal UI/structure, adapted to **Base**:
 ## Features
 
 - ✅ Transparent header & Base-blue theme
+- ✅ Reown AppKit integration
 - ✅ Light/Dark/**Auto** theme toggle (remembered)
 - ✅ Minimal wallet connect stub (AppKit slot ready)
 - ✅ Footer shortcuts (Discord/X/Guild Base)
+- ✅ **Daily Check-in** (one free, gas-sponsored action/day if possible)
 - 🔜 **Badges** section with compact guides (Base-aligned copy)
-- 🔜 **Daily Check-in** (one free, gas-sponsored action/day if possible)
 - 🔜 **Creator/Builder Score** helper (Talent Protocol)
 - 🔜 Optional rewards in **$wenaltszn** for streaks/ships
 
