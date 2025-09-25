@@ -1,5 +1,5 @@
 // pages/index.js
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import ConnectButton from '../components/ConnectButton'
 
