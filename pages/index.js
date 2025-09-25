@@ -1,7 +1,7 @@
 // pages/index.js
 import { useEffect, useMemo, useState } from 'react'
 import Footer from '../components/Footer'
-import { appKit as importedAppKit } from '../lib/appkit' // safe stub
+import ConnectButton from '../components/ConnectButton'
 
 export default function Home() {
   // THEME
@@ -54,20 +54,6 @@ export default function Home() {
     cursor: 'pointer'
   })
   const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
-
-  // SAFE AppKit stub
-  const appKit = useMemo(
-    () =>
-      importedAppKit ?? {
-        open: () => {
-          if (typeof window !== 'undefined') {
-            console.warn('appKit.open() called but AppKit is not initialized.')
-            alert('Connect is not available yet.')
-          }
-        }
-      },
-    []
-  )
 
   return (
     <div
@@ -126,10 +112,10 @@ export default function Home() {
         {/* Spacer */}
         <div style={{ flex: 1 }} />
 
-        {/* Connect */}
-        <button onClick={() => appKit.open?.()} style={pill(true)} aria-label="Connect Wallet">
-          Connect Wallet
-        </button>
+        {/* Connect (AppKit button) */}
+        <span style={pill(true)}>
+          <ConnectButton />
+        </span>
 
         {/* Farcaster */}
         <a
