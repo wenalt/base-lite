@@ -1,5 +1,5 @@
 // components/DailyCheckin.jsx
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useAccount, useChainId, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 
 // Adresse du contrat déployé (fallback sur l'ENV si tu l'ajoutes plus tard sur Vercel)
@@ -21,7 +21,6 @@ const ABI = [
 export default function DailyCheckin() {
   const { address, isConnected } = useAccount()
   const chainId = useChainId()
-  const [note, setNote] = useState('')
 
   const onBase = chainId === 8453 || chainId === 84532
   const contract = useMemo(
@@ -51,11 +50,12 @@ export default function DailyCheckin() {
   const handleCheckIn = () => {
     if (!contract) return
     try {
+      // pas de note -> on envoie une chaîne vide
       writeContract({
         address: contract.address,
         abi: ABI,
         functionName: 'checkIn',
-        args: [note || 'gm base'],
+        args: [''],
         chainId
       })
     } catch (e) {
@@ -69,7 +69,6 @@ export default function DailyCheckin() {
     Promise.resolve().then(() => refetchUser?.())
   }
 
-  // UI helpers
   const label =
     !isConnected ? 'Connect your wallet'
     : !onBase ? 'Switch to Base / Base Sepolia'
@@ -77,7 +76,7 @@ export default function DailyCheckin() {
     : 'Daily check-in'
 
   const streak = userData?.[1] ?? 0
-  const total = userData?.[2] ?? 0
+  // const total = userData?.[2] ?? 0 // on ne l'affiche plus
 
   if (!CHECKIN_ADDRESS) {
     return (
@@ -92,23 +91,10 @@ export default function DailyCheckin() {
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div style={{ fontWeight: 700, marginBottom: 6 }}>Daily check-in</div>
+      <div style={{ fontWeight: 700, marginBottom: 8 }}>Daily check-in</div>
 
-      {/* zone note */}
+      {/* bouton seul */}
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 8 }}>
-        <input
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder="note (optionnel)…"
-          style={{
-            width: 260,
-            height: 36,
-            borderRadius: 12,
-            border: '1px solid rgba(0,0,0,0.14)',
-            padding: '0 12px',
-            outline: 'none'
-          }}
-        />
         <button
           onClick={handleCheckIn}
           disabled={disabled}
@@ -128,10 +114,10 @@ export default function DailyCheckin() {
         </button>
       </div>
 
-      {/* state */}
+      {/* état minimal : streak uniquement */}
       {isConnected && onBase && (
         <div style={{ fontSize: 14, opacity: 0.95 }}>
-          Streak: <strong>{Number(streak)}</strong> — Total: <strong>{Number(total)}</strong>
+          Streak: <strong>{Number(streak)}</strong>
           {canDo === false && <span> — déjà fait aujourd’hui ✅</span>}
         </div>
       )}
