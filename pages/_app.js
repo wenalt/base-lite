@@ -1,8 +1,6 @@
 // pages/_app.js
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { WagmiConfig } from 'wagmi'
-import { wagmiConfig } from '../lib/appkit'
 
 export default function App({ Component, pageProps }) {
   // Persisted theme: 'auto' | 'light' | 'dark'
@@ -34,9 +32,8 @@ export default function App({ Component, pageProps }) {
         <title>Base Lite</title>
       </Head>
 
-      <WagmiConfig config={wagmiConfig}>
-        <Component {...pageProps} />
-      </WagmiConfig>
+      {/* No Wagmi provider until AppKit is wired client-only */}
+      <Component {...pageProps} />
 
       {/* Global styles (styled-jsx) — JS-only, no CSS files */}
       <style jsx global>{`
