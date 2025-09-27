@@ -1,126 +1,100 @@
-// components/DailyCheckin.jsx
-import { useMemo } from 'react'
-import { useAccount, useChainId, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+// components/DailyCheckin.js
+import { useEffect, useMemo, useState } from 'react'
+// If you have wagmi already wired later, you can import useAccount from 'wagmi'
+// For now we read window.__currentAddress if your WalletStatus sets it.
+// You can swap this to wagmi's useAccount() later.
 
-// Adresse du contrat déployé (fallback sur l'ENV si tu l'ajoutes plus tard sur Vercel)
-const CHECKIN_ADDRESS =
-  process.env.NEXT_PUBLIC_CHECKIN_ADDRESS ||
-  '0xfE482b020d5B3f87b72b493f2d7EDddcAC123613'
+function getUTCDateStr(d = new Date()) {
+  const y = d.getUTCFullYear()
+  const m = String(d.getUTCMonth() + 1).padStart(2, '0')
+  const day = String(d.getUTCDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
 
-// ABI minimal du contrat BaseDailyCheckin (version 0.8.24)
-const ABI = [
-  // write
-  { "type":"function","name":"checkIn","stateMutability":"nonpayable","inputs":[{"name":"note","type":"string"}],"outputs":[{"name":"day","type":"uint256"},{"name":"streak","type":"uint256"},{"name":"userTotal","type":"uint256"}]},
-  // reads
-  { "type":"function","name":"getUser","stateMutability":"view","inputs":[{"name":"a","type":"address"}],"outputs":[{"name":"lastDay","type":"uint64"},{"name":"streak","type":"uint32"},{"name":"total","type":"uint32"}]},
-  { "type":"function","name":"canCheckIn","stateMutability":"view","inputs":[{"name":"a","type":"address"}],"outputs":[{"type":"bool"}]},
-  { "type":"function","name":"currentDay","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
-  { "type":"function","name":"totalCheckins","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]}
-]
+function diffDaysUTC(aStr, bStr) {
+  if (!aStr || !bStr) return Infinity
+  const a = Date.parse(`${aStr}T00:00:00Z`)
+  const b = Date.parse(`${bStr}T00:00:00Z`)
+  const ms = Math.abs(a - b)
+  return Math.round(ms / 86400000)
+}
 
 export default function DailyCheckin() {
-  const { address, isConnected } = useAccount()
-  const chainId = useChainId()
+  // Detect current address if your WalletStatus populates it on window.
+  // Later: replace with wagmi's useAccount().address
+  const address =
+    typeof window !== 'undefined' && window.__currentAddress
+      ? String(window.__currentAddress).toLowerCase()
+      : 'anon'
 
-  const onBase = chainId === 8453 || chainId === 84532
-  const contract = useMemo(
-    () => (CHECKIN_ADDRESS && onBase ? { address: CHECKIN_ADDRESS, abi: ABI, chainId } : null),
-    [onBase, chainId]
-  )
+  const storageKey = useMemo(() => `base-lite:checkin:${address}`, [address])
 
-  const { data: canDo } = useReadContract({
-    ...((contract || {}) ),
-    functionName: 'canCheckIn',
-    args: address ? [address] : undefined,
-    query: { enabled: Boolean(contract && isConnected && address) }
-  })
+  const [streak, setStreak] = useState(0)
+  const [lastDate, setLastDate] = useState(null)
+  const [today] = useState(getUTCDateStr())
 
-  const { data: userData, refetch: refetchUser } = useReadContract({
-    ...((contract || {}) ),
-    functionName: 'getUser',
-    args: address ? [address] : undefined,
-    query: { enabled: Boolean(contract && isConnected && address) }
-  })
-
-  const { data: hash, isPending, writeContract } = useWriteContract()
-  const { isLoading: isMining, isSuccess } = useWaitForTransactionReceipt({ hash })
-
-  const disabled = !isConnected || !onBase || !contract || isPending || isMining || canDo === false
-
-  const handleCheckIn = () => {
-    if (!contract) return
+  useEffect(() => {
+    if (typeof window === 'undefined') return
     try {
-      // pas de note -> on envoie une chaîne vide
-      writeContract({
-        address: contract.address,
-        abi: ABI,
-        functionName: 'checkIn',
-        args: [''],
-        chainId
-      })
-    } catch (e) {
-      console.error(e)
-      alert('Failed to send transaction')
-    }
+      const raw = localStorage.getItem(storageKey)
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (typeof parsed.streak === 'number') setStreak(parsed.streak)
+        if (typeof parsed.lastDate === 'string') setLastDate(parsed.lastDate)
+      }
+    } catch (_) {}
+  }, [storageKey])
+
+  const hasCheckedToday = lastDate === today
+
+  function save(nextStreak, dateStr) {
+    setStreak(nextStreak)
+    setLastDate(dateStr)
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify({ streak: nextStreak, lastDate: dateStr })
+      )
+    } catch (_) {}
   }
 
-  // Quand la tx est minée, on rafraîchit les lectures
-  if (isSuccess) {
-    Promise.resolve().then(() => refetchUser?.())
-  }
+  function handleCheckin() {
+    const nowStr = getUTCDateStr()
+    if (lastDate === nowStr) return // already checked today
 
-  const label =
-    !isConnected ? 'Connect your wallet'
-    : !onBase ? 'Switch to Base / Base Sepolia'
-    : canDo === false ? 'Already checked-in today'
-    : 'Daily check-in'
-
-  const streak = userData?.[1] ?? 0
-  // const total = userData?.[2] ?? 0 // on ne l'affiche plus
-
-  if (!CHECKIN_ADDRESS) {
-    return (
-      <div style={{ marginTop: 10, fontSize: 14, opacity: 0.95 }}>
-        <strong>Daily check-in</strong><br/>
-        <span style={{ opacity: 0.8 }}>
-          Configure <code>NEXT_PUBLIC_CHECKIN_ADDRESS</code> (ou mets l’adresse en dur) puis recharge la page.
-        </span>
-      </div>
-    )
+    // If yesterday -> increment; otherwise reset to 1
+    const increment =
+      lastDate && diffDaysUTC(lastDate, nowStr) === 1 ? streak + 1 : 1
+    save(increment, nowStr)
   }
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div style={{ fontWeight: 700, marginBottom: 8 }}>Daily check-in</div>
-
-      {/* bouton seul */}
-      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 8 }}>
-        <button
-          onClick={handleCheckIn}
-          disabled={disabled}
-          style={{
-            height: 36,
-            padding: '0 14px',
-            borderRadius: 12,
-            border: '1px solid rgba(0,0,0,0.14)',
-            background: disabled ? 'rgba(0,0,0,0.08)' : 'rgba(0,0,0,0.12)',
-            cursor: disabled ? 'not-allowed' : 'pointer',
-            fontWeight: 700
-          }}
-          title={label}
-          aria-label="Daily check-in"
-        >
-          {isPending || isMining ? 'Confirming…' : label}
-        </button>
+      <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 6 }}>
+        Streak (per address): <strong>{streak}</strong>
       </div>
 
-      {/* état minimal : streak uniquement */}
-      {isConnected && onBase && (
-        <div style={{ fontSize: 14, opacity: 0.95 }}>
-          Streak: <strong>{Number(streak)}</strong>
-          {canDo === false && <span> — keep it up</span>}
-        </div>
-      )}
+      <button
+        onClick={handleCheckin}
+        disabled={hasCheckedToday}
+        style={{
+          padding: '8px 12px',
+          borderRadius: 10,
+          border: '1px solid rgba(255,255,255,0.18)',
+          background: hasCheckedToday ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.08)',
+          color: '#fff',
+          cursor: hasCheckedToday ? 'default' : 'pointer',
+          fontWeight: 700
+        }}
+      >
+        {hasCheckedToday ? 'Checked in (today)' : 'Daily check-in'}
+      </button>
+
+      <div style={{ marginTop: 6, fontSize: 12, opacity: 0.8 }}>
+        {address === 'anon'
+          ? 'Connect a wallet to track per-address streaks.'
+          : `Tracking for: ${address.slice(0, 6)}…${address.slice(-4)}`}
+      </div>
     </div>
   )
 }
