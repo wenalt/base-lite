@@ -22,7 +22,8 @@ It mirrors Celo Lite’s minimal UI/structure, adapted to **Base**:
 
 ## Live
 
-- App: **https://base-lite.vercel.app/**  
+- App: **https://base-lite-pi.vercel.app/**
+- Repo: **https://github.com/wenalt/base-lite/**
 - Farcaster: **https://farcaster.xyz/wenaltszn.eth**  
 - Discord (Base): **https://discord.gg/buildonbase**  
 - X (Base): **https://x.com/base**
