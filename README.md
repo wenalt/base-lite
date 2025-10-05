@@ -32,6 +32,24 @@ It mirrors Celo Lite’s minimal UI/structure, adapted to **Base**:
 
 <img src="./public/baseog.png" alt="Base Lite OG" width="720"/>
 
+## Tech Stack
+
+- **Next.js 14.2.32** — framework React pour le frontend
+- **React 18.3.1**
+- **Wagmi 2.12.14** — hooks Ethereum pour la connexion wallet
+- **Viem 2.37.9** — client EVM rapide et moderne
+- **@reown/appkit 1.7.18** — WalletConnect AppKit (Reown)
+- **@reown/appkit-adapter-wagmi 1.7.18** — intégration AppKit ↔ Wagmi
+- **@tanstack/react-query 5.56.2** — gestion des requêtes et cache
+
+### WalletConnect / Reown
+L’app intègre **Reown AppKit** pour la connexion via WalletConnect, avec `WagmiAdapter` pour une compatibilité totale avec Wagmi & Viem.
+
+### Déploiement
+- Node.js 20.x
+- Hébergé sur **Vercel**
+
+
 ## Features
 
 - ✅ Transparent header & Base-blue theme
