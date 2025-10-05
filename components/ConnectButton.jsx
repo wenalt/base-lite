@@ -1,13 +1,12 @@
 // components/ConnectButton.jsx
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
-import { appKit } from '../lib/appkit'
+import { openConnectModal } from '../lib/appkit'   // <--
 
 export default function ConnectButton() {
   const { isConnected } = useAccount()
   const [ready, setReady] = useState(false)
 
-  // Attendre l’enregistrement des web-components AppKit
   useEffect(() => {
     if (typeof window === 'undefined') return
     const has = () =>
@@ -28,11 +27,10 @@ export default function ConnectButton() {
     return () => clearInterval(id)
   }, [])
 
-  // Fallback (avant que les web-components soient prêts)
   if (!ready) {
     return (
       <button
-        onClick={() => appKit?.open?.()}
+        onClick={() => openConnectModal()}
         style={{
           display: 'inline-flex',
           alignItems: 'center',
@@ -55,7 +53,6 @@ export default function ConnectButton() {
     )
   }
 
-  // État connecté : montrer Network + Account (menu avec Disconnect / Switch wallet)
   if (isConnected) {
     return (
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -65,6 +62,5 @@ export default function ConnectButton() {
     )
   }
 
-  // État déconnecté : bouton Connect natif
   return <appkit-button />
 }
