@@ -171,6 +171,74 @@ export default function Home() {
         </div>
       </section>
 
+          {/* SECTION ECOSYSTEM */}
+<section style={{ width: '100%' }}>
+  <div
+    style={{
+      width: '100%',
+      maxWidth: 1100,
+      margin: '10px auto 0',
+      padding: '18px 14px',
+      borderRadius: 16,
+      border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+      background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)`,
+      boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+      backdropFilter: 'blur(8px)',
+      textAlign: 'center'
+    }}
+  >
+    <div style={{ fontWeight: 800, marginBottom: 6 }}>Ecosystem</div>
+    <div style={{ opacity: 0.9, marginBottom: 12 }}>Explore Base resources & tools.</div>
+
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
+      <a
+        className="btn-base-ecosystem"
+        href="https://www.base.org/ecosystem"
+        target="_blank"
+        rel="noreferrer"
+        style={pill(true)}
+        title="Base Ecosystem"
+      >
+        Base Ecosystem
+      </a>
+
+      <a
+        className="btn-base-names"
+        href="https://www.base.org/name/"
+        target="_blank"
+        rel="noreferrer"
+        style={pill(true)}
+        title="Base Names"
+      >
+        Base Names
+      </a>
+
+      <a
+        className="btn-base-app"
+        href="https://join.base.app/"
+        target="_blank"
+        rel="noreferrer"
+        style={pill(true)}
+        title="Base App"
+      >
+        Base App
+      </a>
+
+      <a
+        className="btn-base-build"
+        href="https://www.base.org/build"
+        target="_blank"
+        rel="noreferrer"
+        style={pill(true)}
+        title="Base Build"
+      >
+        Base Build
+      </a>
+    </div>
+  </div>
+</section>
+
+
       <Footer />
     </div>
   )
