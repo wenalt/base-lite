@@ -54,6 +54,7 @@ export default function Home() {
       : 'transparent',
     color: isDark ? textDark : '#111',
     cursor: 'pointer'
+    textDecoration: 'none'
   })
   const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
 
