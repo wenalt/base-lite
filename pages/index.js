@@ -53,7 +53,7 @@ export default function Home() {
       ? (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.08)')
       : 'transparent',
     color: isDark ? textDark : '#111',
-    cursor: 'pointer'
+    cursor: 'pointer',
     textDecoration: 'none'
   })
   const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
