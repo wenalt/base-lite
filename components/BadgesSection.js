@@ -16,20 +16,20 @@ const BADGES = [
     chain: "Superchain",
     image: "/badges/csbadge.png",
     summary:
-      "Grow a public reputation signal built from your onchain activity, identity links, and contributions verified by Talent Protocol.",
+      "A reputation metric that quantifies your creative contributions across platforms using verified data.",
     why:
-      "Creator Score helps others quickly assess the credibility and consistency of a wallet across ecosystems. A stronger score can unlock discovery, opportunities and program eligibility.",
+      "Creator Score is designed to recognize authentic creators by evaluating not only reach but consistent quality output and engagement across content, rather than just popularity. It helps platforms and communities discover creators based on impact and consistency. :contentReference[oaicite:0]{index=0}",
     how: [
-      "Create or log in to your Talent Protocol profile and connect your wallet(s).",
-      "Complete your profile (bio, socials) and link relevant onchain identities (e.g., Base name).",
-      "Keep building: ship public work, participate onchain, and maintain activity — your score updates over time.",
+      "Complete your Talent Protocol profile and connect your primary wallet.",
+      "Link your social & content accounts (GitHub, Twitter/Farcaster, blogs, etc.) so data points can be verified.",
+      "Produce original content regularly (posts, articles, media) across platforms to accumulate measurable creative signals."
+      "Earn rewards, creator earnings, or citations on platforms (e.g. Zora, etc.) — those economic metrics add weight. :contentReference[oaicite:1]{index=1}",
     ],
     tiers: [
-      { label: "Reach 20+ Creator Score" },
-      { label: "Reach 40+ Creator Score" },
-      { label: "Reach 60+ Creator Score" },
-      { label: "Reach 80+ Creator Score" },
-      { label: "Reach 100+ Creator Score" },
+      { label: "Reach Creator Score ≥ 10" },
+      { label: "Reach Creator Score ≥ 40" },
+      { label: "Reach Creator Score ≥ 80" },
+      { label: "Reach Creator Score ≥ 120" },
     ],
     external: [
       { label: "Open Creator Score", href: "https://www.creatorscore.app/" },
