@@ -29,7 +29,7 @@ const BADGES = [
     { label: 'Talent Protocol', href: 'https://app.talentprotocol.com/' },
     { label: 'Creator Score (docs)', href: 'https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/creator-score' }
   ],
-}
+};
 
 
 // ---------- UI helpers ----------
