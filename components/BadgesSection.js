@@ -3,10 +3,9 @@ import React, { useMemo, useState } from "react";
 
 /**
  * Minimal, framework-safe version.
- * - No styled-jsx
- * - No next/image (plain <img/>)
- * - Centered layout
- * - Buttons styled as Base Lite "pills"
+ * - No styled-jsx / next/image
+ * - Uses Base Lite pill styles for buttons
+ * - Opaque dialog so it's readable over the page
  */
 
 // ---------- Data ----------
@@ -23,7 +22,7 @@ const BADGES = [
     how: [
       "Create or log in to your Talent Protocol profile and connect your wallet(s).",
       "Complete your profile (bio, socials) and link relevant onchain identities (e.g., Base name).",
-      "Keep building: ship public work, participate onchain, and maintain activity—your score updates over time.",
+      "Keep building: ship public work, participate onchain, and maintain activity — your score updates over time.",
     ],
     tiers: [
       { label: "Reach 20+ Creator Score" },
@@ -68,14 +67,14 @@ const chip = {
   alignItems: "center",
   padding: "2px 8px",
   borderRadius: 999,
-  border: "1px solid var(--ring)",
-  background: "var(--card)",
+  border: "1px solid var(--card-border, rgba(255,255,255,0.18))",
+  background: "var(--card-bg, rgba(16,24,48,0.30))",
   fontSize: 12,
   marginLeft: 8,
 };
-const summary = { margin: "4px 0 0", color: "var(--muted)", fontSize: 14, textAlign: "center" };
+const summary = { margin: "4px 0 0", color: "var(--muted, #c9d1d9)", fontSize: 14, textAlign: "center" };
 
-// style “pill” cohérent avec le reste de Base Lite
+// pill buttons, cohérents avec Base Lite
 const pillBtn = {
   display: "inline-flex",
   alignItems: "center",
@@ -100,24 +99,27 @@ const actions = {
   marginTop: 8,
 };
 
+// Modale: fond d’écran + boîte opaque
 const modalRoot = {
   position: "fixed",
   inset: 0,
-  zIndex: 80,
+  zIndex: 999, // au-dessus du reste
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: 16,
 };
-const backdrop = { position: "absolute", inset: 0, background: "rgba(0,0,0,.42)" };
+const backdrop = { position: "absolute", inset: 0, background: "rgba(0,0,0,.6)" };
 const dialog = {
   position: "relative",
   width: "100%",
-  maxWidth: 680,
-  background: "var(--card)",
-  border: "1px solid var(--ring)",
+  maxWidth: 720,
+  // OPAQUE + lisible en dark/blue
+  background: "rgba(16,24,48,0.96)",
+  color: "#fff",
+  border: "1px solid rgba(255,255,255,0.18)",
   borderRadius: 16,
-  boxShadow: "0 10px 30px rgba(0,0,0,.3)",
+  boxShadow: "0 20px 50px rgba(0,0,0,.45)",
 };
 const dhead = { display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 0" };
 const dtitle = { margin: 0, fontSize: 18, fontWeight: 800 };
@@ -131,7 +133,7 @@ const closeBtn = {
   color: "inherit",
 };
 const dbody = { padding: "12px 16px 16px", fontSize: 15, lineHeight: 1.55 };
-const meta = { color: "var(--muted)", fontSize: 13 };
+const meta = { color: "rgba(255,255,255,0.75)", fontSize: 13 };
 
 // ---------- Component ----------
 export default function BadgesSection() {
@@ -181,6 +183,7 @@ export default function BadgesSection() {
                 ×
               </button>
             </div>
+
             <div style={dbody}>
               <div style={meta}>Chain: {openSpec.chain}</div>
 
@@ -201,7 +204,7 @@ export default function BadgesSection() {
               {openSpec.tiers && (
                 <section>
                   <h5 style={{ margin: "12px 0 6px", fontSize: 15 }}>Tiers</h5>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                     {openSpec.tiers.map((t, i) => (
                       <li
                         key={i}
@@ -225,7 +228,7 @@ export default function BadgesSection() {
                         <span>
                           {t.label}
                           {t.hint ? (
-                            <span style={{ color: "var(--muted)", fontSize: 12 }}>
+                            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: 12 }}>
                               {" "}
                               – {t.hint}
                             </span>
@@ -234,7 +237,7 @@ export default function BadgesSection() {
                       </li>
                     ))}
                   </ul>
-                </section>
+              </section>
               )}
 
               {openSpec.external && openSpec.external.length > 0 && (
