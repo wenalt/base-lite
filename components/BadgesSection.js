@@ -18,12 +18,12 @@ const BADGES = [
     summary:
       "A reputation metric that quantifies your creative contributions across platforms using verified data.",
     why:
-      "Creator Score is designed to recognize authentic creators by evaluating not only reach but consistent quality output and engagement across content, rather than just popularity. It helps platforms and communities discover creators based on impact and consistency. :contentReference[oaicite:0]{index=0}",
+      "Creator Score is designed to recognize authentic creators by evaluating consistent quality output and engagement, not just popularity. It helps platforms and communities discover creators based on impact and consistency.",
     how: [
-      "Complete your Talent Protocol profile and connect your primary wallet.",
-      "Link your social & content accounts (GitHub, Twitter/Farcaster, blogs, etc.) so data points can be verified.",
-      "Produce original content regularly (posts, articles, media) across platforms to accumulate measurable creative signals."
-      "Earn rewards, creator earnings, or citations on platforms (e.g. Zora, etc.) — those economic metrics add weight. :contentReference[oaicite:1]{index=1}",
+      "Complete your Talent Protocol profile and connect your primary wallet(s).",
+      "Link your social & content accounts (GitHub, Farcaster/Twitter, blogs, etc.) so data points can be verified.",
+      "Publish original work regularly (posts, articles, repos, media) to accumulate measurable creative signals.",
+      "Earnings and attributions on creator platforms (e.g., mints/sales, tips) further strengthen your score.",
     ],
     tiers: [
       { label: "Reach Creator Score ≥ 10" },
@@ -99,27 +99,31 @@ const actions = {
   marginTop: 8,
 };
 
-// Modale: fond d’écran + boîte opaque
+// Modale: fond d’écran + boîte OPAQUE
 const modalRoot = {
   position: "fixed",
   inset: 0,
-  zIndex: 999, // au-dessus du reste
+  zIndex: 999,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: 16,
 };
-const backdrop = { position: "absolute", inset: 0, background: "rgba(0,0,0,.6)" };
+const backdrop = {
+  position: "absolute",
+  inset: 0,
+  background: "rgba(0,0,0,0.72)", // plus sombre -> rien ne transparaît
+};
 const dialog = {
   position: "relative",
   width: "100%",
   maxWidth: 720,
-  // OPAQUE + lisible en dark/blue
-  background: "rgba(16,24,48,0.96)",
+  // totalement opaque
+  background: "#101828", // bleu nuit opaque
   color: "#fff",
   border: "1px solid rgba(255,255,255,0.18)",
   borderRadius: 16,
-  boxShadow: "0 20px 50px rgba(0,0,0,.45)",
+  boxShadow: "0 24px 60px rgba(0,0,0,.55)",
 };
 const dhead = { display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 0" };
 const dtitle = { margin: 0, fontSize: 18, fontWeight: 800 };
@@ -204,7 +208,7 @@ export default function BadgesSection() {
               {openSpec.tiers && (
                 <section>
                   <h5 style={{ margin: "12px 0 6px", fontSize: 15 }}>Tiers</h5>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                     {openSpec.tiers.map((t, i) => (
                       <li
                         key={i}
@@ -237,7 +241,7 @@ export default function BadgesSection() {
                       </li>
                     ))}
                   </ul>
-              </section>
+                </section>
               )}
 
               {openSpec.external && openSpec.external.length > 0 && (
