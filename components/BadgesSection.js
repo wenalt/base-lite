@@ -1,7 +1,15 @@
 // components/BadgesSection.js
 import React, { useMemo, useState } from "react";
 
+/**
+ * Minimal, framework-safe version.
+ * - No styled-jsx
+ * - No next/image (plain <img/>)
+ * - Centered layout
+ * - Buttons styled as Base Lite "pills"
+ */
 
+// ---------- Data ----------
 const BADGES = [
   {
     id: "creator-score",
@@ -36,17 +44,6 @@ const BADGES = [
 ];
 
 // ---------- UI helpers ----------
-const btnStyle = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: 8,
-  padding: "10px 14px",
-  borderRadius: 12,
-  border: 0,
-  cursor: "pointer",
-  textDecoration: "none",
-};
-
 const wrap = {
   width: "100%",
   display: "flex",
@@ -77,7 +74,31 @@ const chip = {
   marginLeft: 8,
 };
 const summary = { margin: "4px 0 0", color: "var(--muted)", fontSize: 14, textAlign: "center" };
-const actions = { display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 8 };
+
+// style “pill” cohérent avec le reste de Base Lite
+const pillBtn = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  height: 36,
+  padding: "0 12px",
+  borderRadius: 12,
+  fontSize: 14,
+  fontWeight: 600,
+  border: "1px solid rgba(255,255,255,0.18)",
+  background: "rgba(255,255,255,0.10)",
+  color: "inherit",
+  textDecoration: "none",
+  cursor: "pointer",
+};
+
+const actions = {
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+  justifyContent: "center",
+  marginTop: 8,
+};
 
 const modalRoot = {
   position: "fixed",
@@ -130,9 +151,17 @@ export default function BadgesSection() {
             </div>
             <p style={summary}>{b.summary}</p>
             <div style={actions}>
-              <button className="btn" onClick={() => setOpenId(b.id)}>Details</button>
+              <button style={pillBtn} onClick={() => setOpenId(b.id)}>
+                Details
+              </button>
               {b.external?.map((x) => (
-                <a key={x.href} className="btn" href={x.href} target="_blank" rel="noreferrer">
+                <a
+                  key={x.href}
+                  href={x.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={pillBtn}
+                >
                   {x.label}
                 </a>
               ))}
@@ -213,7 +242,7 @@ export default function BadgesSection() {
                   <h5 style={{ margin: "12px 0 6px", fontSize: 15 }}>Links</h5>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 6 }}>
                     {openSpec.external.map((x) => (
-                      <a key={x.href} className="btn" href={x.href} target="_blank" rel="noreferrer">
+                      <a key={x.href} href={x.href} target="_blank" rel="noreferrer" style={pillBtn}>
                         {x.label}
                       </a>
                     ))}
