@@ -1,16 +1,206 @@
-import Link from "next/link";
-import { BADGES } from "../lib/badges";
+// components/BadgesSection.js
+import React, { useMemo, useState } from 'react'
+
+
+const BADGES = [
+ {
+  id: 'creator-score',
+  title: 'Creator Score',
+  chain: 'Superchain',
+  image: '/badges/csbadge.png',
+  summary:
+    'A reputation metric that quantifies your creative contributions across platforms using verified data.',
+  why:
+    'Creator Score is designed to recognize authentic creators by evaluating not only reach but consistent quality output and engagement across content, rather than just popularity. It helps platforms and communities discover creators based on impact and consistency. :contentReference[oaicite:0]{index=0}',
+  how: [
+    'Complete your Talent Protocol profile and connect your primary wallet.',
+    'Link your social & content accounts (GitHub, Twitter/Farcaster, blogs, etc.) so data points can be verified.',
+    'Produce original content regularly (posts, articles, media) across platforms to accumulate measurable creative signals.',
+    'Earn rewards, creator earnings, or citations on platforms (e.g. Zora, etc.) — those economic metrics add weight. :contentReference[oaicite:1]{index=1}',
+  ],
+  tiers: [
+    { label: 'Reach Creator Score ≥ 10' },
+    { label: 'Reach Creator Score ≥ 40' },
+    { label: 'Reach Creator Score ≥ 80' },
+    { label: 'Reach Creator Score ≥ 120' },
+  ],
+  external: [
+    { label: 'Open Creator Score', href: 'https://www.creatorscore.app/' },
+    { label: 'Talent Protocol', href: 'https://app.talentprotocol.com/' },
+    { label: 'Creator Score (docs)', href: 'https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/creator-score' }
+  ],
+}
+
+
+// ---------- UI helpers ----------
+const btnStyle = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '10px 14px',
+  borderRadius: 12,
+  border: '1px solid rgba(255,255,255,0.22)',
+  background: 'rgba(255,255,255,0.12)',
+  color: '#fff',
+  fontWeight: 700,
+  textDecoration: 'none',
+  cursor: 'pointer',
+}
 
 export default function BadgesSection() {
+  const data = useMemo(() => BADGES, [])
+  const [openId, setOpenId] = useState(null)
+  const openSpec = useMemo(() => data.find((b) => b.id === openId) || null, [data, openId])
+
+  const wrap = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 10,
+  }
+
+  const item = {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    flexWrap: 'wrap',
+  }
+
+  const imgStyle = { borderRadius: 12, width: 64, height: 64, objectFit: 'cover' }
+  const name = { margin: 0, fontSize: 16, fontWeight: 800 }
+  const chip = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    padding: '2px 8px',
+    borderRadius: 999,
+    border: '1px solid rgba(255,255,255,0.22)',
+    background: 'rgba(255,255,255,0.10)',
+    fontSize: 12,
+    marginLeft: 8,
+  }
+  const summary = {
+    margin: '4px 0 0',
+    opacity: 0.9,
+    fontSize: 14,
+    textAlign: 'center',
+  }
+  const actions = { display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 }
+
+  // Modal
+  const modalRoot = {
+    position: 'fixed',
+    inset: 0,
+    zIndex: 80,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+  }
+  const backdrop = { position: 'absolute', inset: 0, background: 'rgba(0,0,0,.42)' }
+  const dialog = {
+    position: 'relative',
+    width: '100%',
+    maxWidth: 680,
+    background: 'rgba(255,255,255,0.10)',
+    border: '1px solid rgba(255,255,255,0.22)',
+    borderRadius: 16,
+    boxShadow: '0 10px 30px rgba(0,0,0,.3)',
+    color: '#fff',
+  }
+  const dhead = { display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px 0' }
+  const dtitle = { margin: 0, fontSize: 18, fontWeight: 800 }
+  const closeBtn = {
+    marginLeft: 'auto',
+    background: 'transparent',
+    border: 0,
+    fontSize: 24,
+    lineHeight: 1,
+    cursor: 'pointer',
+    color: 'inherit',
+  }
+  const dbody = { padding: '12px 16px 16px', fontSize: 15, lineHeight: 1.55 }
+  const meta = { opacity: 0.85, fontSize: 13 }
+
   return (
-    <div className="card" style={{ marginTop: 12 }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ fontWeight: 600 }}>Badges</div>
-        <Link href="/badges" legacyBehavior><a className="btn">Open</a></Link>
-      </div>
-      <p style={{ marginTop: 6, color: "var(--muted)" }}>
-        Explore Base-friendly badges. Each card links to a short guide.
-      </p>
+    <div style={wrap}>
+      {data.map((b) => (
+        <div key={b.id} style={item}>
+          <img src={b.image} alt={b.title} style={imgStyle} />
+          <div style={{ maxWidth: 640 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <h3 style={name}>{b.title}</h3>
+              <span style={chip}>{b.chain}</span>
+            </div>
+            <p style={summary}>{b.summary}</p>
+            <div style={actions}>
+              <button style={btnStyle} onClick={() => setOpenId(b.id)}>Details</button>
+              {b.external?.map((x) => (
+                <a key={x.href} href={x.href} target="_blank" rel="noreferrer" style={btnStyle}>
+                  {x.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+
+      {openSpec && (
+        <div style={modalRoot} role="dialog" aria-modal="true">
+          <div style={backdrop} onClick={() => setOpenId(null)} />
+          <div style={dialog}>
+            <div style={dhead}>
+              <img src={openSpec.image} alt="" width={28} height={28} style={{ borderRadius: 8 }} />
+              <h4 style={dtitle}>{openSpec.title}</h4>
+              <button style={closeBtn} onClick={() => setOpenId(null)} aria-label="Close">×</button>
+            </div>
+            <div style={dbody}>
+              <div style={meta}>Network: {openSpec.chain}</div>
+
+              <section>
+                <h5 style={{ margin: '12px 0 6px', fontSize: 15 }}>Pourquoi c’est utile</h5>
+                <p style={{ margin: 0 }}>{openSpec.why}</p>
+              </section>
+
+              <section>
+                <h5 style={{ margin: '12px 0 6px', fontSize: 15 }}>Comment progresser</h5>
+                <ul style={{ margin: 0, paddingLeft: 18 }}>
+                  {openSpec.how.map((li, i) => <li key={i}>{li}</li>)}
+                </ul>
+              </section>
+
+              {openSpec.tiers?.length ? (
+                <section>
+                  <h5 style={{ margin: '12px 0 6px', fontSize: 15 }}>Paliers</h5>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    {openSpec.tiers.map((t, i) => (
+                      <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '6px 0' }}>
+                        <span style={{ width: 6, height: 6, borderRadius: 999, background: 'currentColor', opacity: .75 }} />
+                        <span>{t.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              {openSpec.external?.length ? (
+                <section>
+                  <h5 style={{ margin: '12px 0 6px', fontSize: 15 }}>Liens</h5>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
+                    {openSpec.external.map((x) => (
+                      <a key={x.href} href={x.href} target="_blank" rel="noreferrer" style={btnStyle}>
+                        {x.label}
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  );
+  )
 }
