@@ -63,6 +63,15 @@ const BADGES = [
     ],
     external: [
       { label: "Open Talent Protocol", href: "https://app.talentprotocol.com/" },
+      { label: "Builder Rewards", href: "https://www.builderscore.xyz/" },
+      {
+        label: "Builder Score (docs)",
+        href: "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/builder-score",
+      },
+      {
+        label: "Builder Score Levels (docs)",
+        href: "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/builder-score/builder-score-levels",
+      },
     ],
   },
 ];
