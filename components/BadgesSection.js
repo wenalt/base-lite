@@ -40,6 +40,31 @@ const BADGES = [
       },
     ],
   },
+
+  // NEW — Builder Score
+  {
+    id: "builder-score",
+    title: "Builder Score",
+    chain: "Superchain",
+    image: "/badges/bsbadge.png",
+    summary:
+      "A public reputation signal for builders based on verifiable activity: code, onchain actions, contributions, identity links, and profile completeness.",
+    why:
+      "Builder Score helps others quickly assess a wallet’s credibility and consistency across ecosystems. A higher score unlocks discovery, opportunities, and eligibility in programs and leaderboards.",
+    how: [
+      "Create or log in to your Talent Protocol profile and connect your wallet(s).",
+      "Complete your profile (bio, socials) and link relevant identities (e.g., Base name, GitHub).",
+      "Build in public: ship code/products, participate onchain, and keep your profile updated—your score improves over time.",
+    ],
+    tiers: [
+      { label: "Reach Builder Score ≥ 30" },
+      { label: "Reach Builder Score ≥ 60" },
+      { label: "Reach Builder Score ≥ 90" },
+    ],
+    external: [
+      { label: "Open Talent Protocol", href: "https://app.talentprotocol.com/" },
+    ],
+  },
 ];
 
 // ---------- UI helpers ----------
@@ -99,31 +124,27 @@ const actions = {
   marginTop: 8,
 };
 
-// Modale: fond d’écran + boîte OPAQUE
+// Modale: fond d’écran + boîte opaque
 const modalRoot = {
   position: "fixed",
   inset: 0,
-  zIndex: 999,
+  zIndex: 999, // au-dessus du reste
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: 16,
 };
-const backdrop = {
-  position: "absolute",
-  inset: 0,
-  background: "rgba(0,0,0,0.72)", // plus sombre -> rien ne transparaît
-};
+const backdrop = { position: "absolute", inset: 0, background: "rgba(0,0,0,.6)" };
 const dialog = {
   position: "relative",
   width: "100%",
   maxWidth: 720,
-  // totalement opaque
-  background: "#101828", // bleu nuit opaque
+  // OPAQUE + lisible en dark/blue
+  background: "rgba(16,24,48,0.96)",
   color: "#fff",
   border: "1px solid rgba(255,255,255,0.18)",
   borderRadius: 16,
-  boxShadow: "0 24px 60px rgba(0,0,0,.55)",
+  boxShadow: "0 20px 50px rgba(0,0,0,.45)",
 };
 const dhead = { display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 0" };
 const dtitle = { margin: 0, fontSize: 18, fontWeight: 800 };
