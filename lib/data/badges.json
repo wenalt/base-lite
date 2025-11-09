@@ -1,0 +1,60 @@
+[
+  {
+    "id": "creator-score",
+    "title": "Creator Score",
+    "chain": "Superchain",
+    "image": "/badges/csbadge.png",
+    "summary": "A reputation metric that quantifies your creative contributions across platforms using verified data.",
+    "why": "Creator Score is designed to recognize authentic creators by evaluating consistent quality output and engagement, not just popularity. It helps platforms and communities discover creators based on impact and consistency.",
+    "how": [
+      "Complete your Talent Protocol profile and connect your primary wallet(s).",
+      "Link your social & content accounts (GitHub, Farcaster/Twitter, blogs, etc.) so data points can be verified.",
+      "Publish original work regularly (posts, articles, repos, media) to accumulate measurable creative signals.",
+      "Earnings and attributions on creator platforms (e.g., mints/sales, tips) further strengthen your score."
+    ],
+    "tiers": [
+      { "label": "Reach Creator Score ≥ 10" },
+      { "label": "Reach Creator Score ≥ 40" },
+      { "label": "Reach Creator Score ≥ 80" },
+      { "label": "Reach Creator Score ≥ 120" }
+    ],
+    "external": [
+      { "label": "Open Creator Score", "href": "https://www.creatorscore.app/" },
+      { "label": "Open Talent Protocol", "href": "https://app.talentprotocol.com/" },
+      {
+        "label": "Creator Score (docs)",
+        "href": "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/creator-score"
+      }
+    ]
+  },
+  {
+    "id": "builder-score",
+    "title": "Builder Score",
+    "chain": "Superchain",
+    "image": "/badges/bsbadge.png",
+    "summary": "A public reputation signal for builders based on verifiable activity: code, onchain actions, contributions, identity links, and profile completeness.",
+    "why": "Builder Score helps others quickly assess a wallet’s credibility and consistency across ecosystems. A higher score unlocks discovery, opportunities, and eligibility in programs and leaderboards.",
+    "how": [
+      "Create or log in to your Talent Protocol profile and connect your wallet(s).",
+      "Complete your profile (bio, socials) and link relevant identities (e.g., Base name, GitHub).",
+      "Build in public: ship code/products, participate onchain, and keep your profile updated—your score improves over time."
+    ],
+    "tiers": [
+      { "label": "Reach Builder Score ≥ 30" },
+      { "label": "Reach Builder Score ≥ 60" },
+      { "label": "Reach Builder Score ≥ 90" }
+    ],
+    "external": [
+      { "label": "Open Talent Protocol", "href": "https://app.talentprotocol.com/" },
+      { "label": "Builder Rewards", "href": "https://www.builderscore.xyz/" },
+      {
+        "label": "Builder Score (docs)",
+        "href": "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/builder-score"
+      },
+      {
+        "label": "Builder Score Levels (docs)",
+        "href": "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/builder-score/builder-score-levels"
+      }
+    ]
+  }
+]
