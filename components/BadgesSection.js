@@ -10,6 +10,7 @@ import React, { useMemo, useState } from "react";
 
 // ---------- Data ----------
 const BADGES = [
+  // Creator Score
   {
     id: "creator-score",
     title: "Creator Score",
@@ -41,19 +42,20 @@ const BADGES = [
     ],
   },
 
+  // Builder Score
   {
     id: "builder-score",
     title: "Builder Score",
     chain: "Ethereum",
     image: "/badges/bsbadge.png",
     summary:
-      "Builder Score by Talent Protocol reflects verifiable builder activity: profile completeness, onchain actions, contributions, and participation.",
+      "A builder reputation signal by Talent Protocol that aggregates onchain activity and public contributions to show your consistency and credibility as a builder.",
     why:
-      "A higher Builder Score helps surface consistent, credible builders for programs and rewards. It aggregates signals from your work, identity links, and activity to unlock discovery and eligibility.",
+      "A higher Builder Score helps you stand out to ecosystems, programs, and DAOs that reward consistent public building. It captures progress over time, not just one-off moments.",
     how: [
-      "Create or sign in to your Talent Protocol account and connect your wallet(s).",
-      "Complete your builder profile (bio, skills) and link identities (GitHub, Farcaster, Base name, etc.).",
-      "Keep shipping public work and participating in ecosystem programs—your score updates over time.",
+      "Open Talent Protocol and complete your builder profile.",
+      "Connect your wallet(s) and link relevant accounts (GitHub, Farcaster, etc.).",
+      "Keep shipping public work (code, apps, tutorials), participate in programs, and maintain activity — your score improves over time.",
     ],
     tiers: [
       { label: "Have a Builder score above 30" },
@@ -61,7 +63,7 @@ const BADGES = [
       { label: "Have a Builder score above 90" },
     ],
     external: [
-      { label: "Open Talent", href: "https://app.talentprotocol.com/" },
+      { label: "Open Builder Score", href: "https://app.talentprotocol.com/" },
       { label: "Builder Rewards", href: "https://www.builderscore.xyz/" },
       {
         label: "Builder Score (docs)",
@@ -74,19 +76,18 @@ const BADGES = [
     ],
   },
 
+  // Based Nouns Holder (Base)
   {
     id: "based-nouns-holder",
     title: "Based Nouns Holder",
     chain: "Base",
     image: "/badges/basednounsbadge.png",
-    summary:
-      "Hold Based Nouns on Base to progress through simple ownership tiers.",
+    summary: "Hold Based Nouns NFTs on Base to unlock tiers.",
     why:
-      "Holding Based Nouns signals participation in a Base-native NFT community. Ownership tiers help you track progress for programs that recognize collectors and community members.",
+      "Holding Based Nouns signals participation in the Base-native Nouns ecosystem and its community culture.",
     how: [
-      "Acquire Based Nouns on Base (e.g., via OpenSea’s Base collection).",
-      "Hold the NFT(s) in your wallet—tiers update with the number you own.",
-      "Keep an eye on program pages that may recognize holders for rewards or access.",
+      "Get a Based Nouns NFT on Base (secondary markets).",
+      "Hold the NFT in your wallet to progress through tiers.",
     ],
     tiers: [
       { label: "Hold 1 Based Nouns on Base" },
@@ -95,7 +96,30 @@ const BADGES = [
     ],
     external: [
       { label: "Open Based Nouns (OpenSea)", href: "https://opensea.io/collection/based-nouns" },
-      { label: "Based-nouns", href: "https://based-nouns.com/" },
+    ],
+  },
+
+  // Lil Nouns Holder (Ethereum)
+  {
+    id: "lil-nouns-holder",
+    title: "Lil Nouns Holder",
+    chain: "Ethereum",
+    image: "/badges/lnbadge.png",
+    summary: "Hold Lil Nouns NFTs on Ethereum Mainnet to unlock tiers.",
+    why:
+      "Lil Nouns extends the Nouns ecosystem with daily auctions and a vibrant builder community. Holding Lil Nouns shows long-term alignment with the Nouns ethos.",
+    how: [
+      "Acquire a Lil Nouns NFT on Ethereum (e.g., secondary markets).",
+      "Keep the NFT in your wallet — tiers reflect how many you hold.",
+    ],
+    tiers: [
+      { label: "Hold 1 Lil Nouns on Ethereum Mainnet" },
+      { label: "Hold 3 Lil Nouns on Ethereum Mainnet" },
+      { label: "Hold 5 Lil Nouns on Ethereum Mainnet" },
+    ],
+    external: [
+      { label: "Open Lil Nouns (OpenSea)", href: "https://opensea.io/collection/lil-nouns" },
+      { label: "Lil Nouns — LinkTree", href: "https://linktr.ee/lilnounsdao" },
     ],
   },
 ];
@@ -130,9 +154,14 @@ const chip = {
   fontSize: 12,
   marginLeft: 8,
 };
-const summary = { margin: "4px 0 0", color: "var(--muted, #c9d1d9)", fontSize: 14, textAlign: "center" };
+const summary = {
+  margin: "4px 0 0",
+  color: "var(--muted, #c9d1d9)",
+  fontSize: 14,
+  textAlign: "center",
+};
 
-// pill buttons, cohérents avec Base Lite
+// pill buttons
 const pillBtn = {
   display: "inline-flex",
   alignItems: "center",
@@ -157,11 +186,11 @@ const actions = {
   marginTop: 8,
 };
 
-// Modale: fond d’écran + boîte opaque
+// Modal: backdrop + opaque dialog
 const modalRoot = {
   position: "fixed",
   inset: 0,
-  zIndex: 999, // au-dessus du reste
+  zIndex: 999, // above footer/icons
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -172,7 +201,6 @@ const dialog = {
   position: "relative",
   width: "100%",
   maxWidth: 720,
-  // OPAQUE + lisible en dark/blue
   background: "rgba(16,24,48,0.96)",
   color: "#fff",
   border: "1px solid rgba(255,255,255,0.18)",
@@ -197,7 +225,10 @@ const meta = { color: "rgba(255,255,255,0.75)", fontSize: 13 };
 export default function BadgesSection() {
   const data = useMemo(() => BADGES, []);
   const [openId, setOpenId] = useState(null);
-  const openSpec = useMemo(() => data.find((b) => b.id === openId) || null, [data, openId]);
+  const openSpec = useMemo(
+    () => data.find((b) => b.id === openId) || null,
+    [data, openId]
+  );
 
   return (
     <div style={wrap}>
@@ -211,9 +242,7 @@ export default function BadgesSection() {
             </div>
             <p style={summary}>{b.summary}</p>
             <div style={actions}>
-              <button style={pillBtn} onClick={() => setOpenId(b.id)}>
-                Details
-              </button>
+              <button style={pillBtn} onClick={() => setOpenId(b.id)}>Details</button>
               {b.external?.map((x) => (
                 <a
                   key={x.href}
@@ -237,9 +266,7 @@ export default function BadgesSection() {
             <div style={dhead}>
               <img src={openSpec.image} alt="" width={28} height={28} style={{ borderRadius: 8 }} />
               <h4 style={dtitle}>{openSpec.title}</h4>
-              <button style={closeBtn} onClick={() => setOpenId(null)} aria-label="Close">
-                ×
-              </button>
+              <button style={closeBtn} onClick={() => setOpenId(null)} aria-label="Close">×</button>
             </div>
 
             <div style={dbody}>
@@ -253,9 +280,7 @@ export default function BadgesSection() {
               <section>
                 <h5 style={{ margin: "12px 0 6px", fontSize: 15 }}>How to progress</h5>
                 <ul style={{ margin: 0, paddingLeft: 18 }}>
-                  {openSpec.how.map((li, i) => (
-                    <li key={i}>{li}</li>
-                  ))}
+                  {openSpec.how.map((li, i) => <li key={i}>{li}</li>)}
                 </ul>
               </section>
 
