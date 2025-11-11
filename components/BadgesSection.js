@@ -95,6 +95,7 @@ const BADGES = [
     ],
     external: [
       { label: "Open Based Nouns (OpenSea)", href: "https://opensea.io/collection/based-nouns" },
+      { label: "Based-nouns", href: "https://based-nouns.com/" },
     ],
   },
 ];
