@@ -123,7 +123,7 @@ const BADGES = [
     ],
   },
 
-  // Nouns Holder (Ethereum) — NEW
+  // Nouns Holder (Ethereum)
   {
     id: "nouns-holder",
     title: "Nouns Holder",
@@ -144,6 +144,33 @@ const BADGES = [
     external: [
       { label: "Open Nouns (OpenSea)", href: "https://opensea.io/collection/nouns" },
       { label: "Nouns.wtf", href: "https://nouns.wtf/" },
+    ],
+  },
+
+  // Giveth Donor (OP Mainnet)
+  {
+    id: "giveth-donor",
+    title: "Giveth Donor",
+    chain: "Optimism",
+    image: "/badges/gdonorbadge.png",
+    summary: "Donate on Giveth to support public goods; tiers reflect total USD donated.",
+    why:
+      "Giveth routes funds directly to impact projects. Donating builds a positive onchain footprint and aligns your activity with public goods funding.",
+    how: [
+      "Open Giveth, pick a project you believe in, and connect your wallet (OP Mainnet supported).",
+      "Choose an amount in USD equivalent and confirm the donation transaction.",
+      "Keep records if you need them for personal accounting — donations are generally non-refundable.",
+    ],
+    tiers: [
+      { label: "Donate at least $25 on Giveth" },
+      { label: "Donate at least $100 on Giveth" },
+      { label: "Donate at least $250 on Giveth" },
+      { label: "Donate at least $1K on Giveth" },
+    ],
+    external: [
+      { label: "Open Giveth", href: "https://giveth.io/" },
+      // lien fourni par toi, ajouté comme ressource complémentaire
+      { label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" },
     ],
   },
 ];
