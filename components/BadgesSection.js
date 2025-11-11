@@ -122,6 +122,30 @@ const BADGES = [
       { label: "Lil Nouns — LinkTree", href: "https://linktr.ee/lilnounsdao" },
     ],
   },
+
+  // Nouns Holder (Ethereum) — NEW
+  {
+    id: "nouns-holder",
+    title: "Nouns Holder",
+    chain: "Ethereum",
+    image: "/badges/nhbadge.png",
+    summary: "Hold Nouns NFTs on Ethereum Mainnet to unlock tiers.",
+    why:
+      "Nouns DAO is a flagship onchain community/brand. Holding a Noun represents deep participation in the Nouns ecosystem and its governance culture.",
+    how: [
+      "Acquire a Noun on Ethereum (e.g., via OpenSea/auction).",
+      "Hold the Noun in your wallet — tiers reflect how many you hold.",
+    ],
+    tiers: [
+      { label: "Hold 1 Nouns on Ethereum Mainnet" },
+      { label: "Hold 3 Nouns on Ethereum Mainnet" },
+      { label: "Hold 5 Nouns on Ethereum Mainnet" },
+    ],
+    external: [
+      { label: "Open Nouns (OpenSea)", href: "https://opensea.io/collection/nouns" },
+      { label: "Nouns.wtf", href: "https://nouns.wtf/" },
+    ],
+  },
 ];
 
 // ---------- UI helpers ----------
