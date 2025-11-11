@@ -41,28 +41,27 @@ const BADGES = [
     ],
   },
 
-  // NEW — Builder Score
   {
     id: "builder-score",
     title: "Builder Score",
-    chain: "Superchain",
+    chain: "Ethereum",
     image: "/badges/bsbadge.png",
     summary:
-      "A public reputation signal for builders based on verifiable activity: code, onchain actions, contributions, identity links, and profile completeness.",
+      "Builder Score by Talent Protocol reflects verifiable builder activity: profile completeness, onchain actions, contributions, and participation.",
     why:
-      "Builder Score helps others quickly assess a wallet’s credibility and consistency across ecosystems. A higher score unlocks discovery, opportunities, and eligibility in programs and leaderboards.",
+      "A higher Builder Score helps surface consistent, credible builders for programs and rewards. It aggregates signals from your work, identity links, and activity to unlock discovery and eligibility.",
     how: [
-      "Create or log in to your Talent Protocol profile and connect your wallet(s).",
-      "Complete your profile (bio, socials) and link relevant identities (e.g., Base name, GitHub).",
-      "Build in public: ship code/products, participate onchain, and keep your profile updated—your score improves over time.",
+      "Create or sign in to your Talent Protocol account and connect your wallet(s).",
+      "Complete your builder profile (bio, skills) and link identities (GitHub, Farcaster, Base name, etc.).",
+      "Keep shipping public work and participating in ecosystem programs—your score updates over time.",
     ],
     tiers: [
-      { label: "Reach Builder Score ≥ 30" },
-      { label: "Reach Builder Score ≥ 60" },
-      { label: "Reach Builder Score ≥ 90" },
+      { label: "Have a Builder score above 30" },
+      { label: "Have a Builder score above 60" },
+      { label: "Have a Builder score above 90" },
     ],
     external: [
-      { label: "Open Talent Protocol", href: "https://app.talentprotocol.com/" },
+      { label: "Open Talent", href: "https://app.talentprotocol.com/" },
       { label: "Builder Rewards", href: "https://www.builderscore.xyz/" },
       {
         label: "Builder Score (docs)",
@@ -72,6 +71,30 @@ const BADGES = [
         label: "Builder Score Levels (docs)",
         href: "https://docs.talentprotocol.com/docs/protocol-concepts/scoring-systems/builder-score/builder-score-levels",
       },
+    ],
+  },
+
+  {
+    id: "based-nouns-holder",
+    title: "Based Nouns Holder",
+    chain: "Base",
+    image: "/badges/basednounsbadge.png",
+    summary:
+      "Hold Based Nouns on Base to progress through simple ownership tiers.",
+    why:
+      "Holding Based Nouns signals participation in a Base-native NFT community. Ownership tiers help you track progress for programs that recognize collectors and community members.",
+    how: [
+      "Acquire Based Nouns on Base (e.g., via OpenSea’s Base collection).",
+      "Hold the NFT(s) in your wallet—tiers update with the number you own.",
+      "Keep an eye on program pages that may recognize holders for rewards or access.",
+    ],
+    tiers: [
+      { label: "Hold 1 Based Nouns on Base" },
+      { label: "Hold 3 Based Nouns on Base" },
+      { label: "Hold 5 Based Nouns on Base" },
+    ],
+    external: [
+      { label: "Open Based Nouns (OpenSea)", href: "https://opensea.io/collection/based-nouns" },
     ],
   },
 ];
