@@ -171,6 +171,31 @@ const BADGES = [
       { label: "Open Giveth", href: "https://giveth.io/" },
     ],
   },
+
+  // Gitcoin Donor (OP Mainnet) — NEW
+  {
+    id: "gitcoin-donor",
+    title: "Gitcoin Donor",
+    chain: "Optimism",
+    image: "/badges/gtcdbadge.png",
+    summary: "Donate on Gitcoin to fund public goods; tiers reflect total USD donated.",
+    why:
+      "Gitcoin Grants match community donations to accelerate public goods. Supporting rounds adds clear, positive signals to your onchain reputation.",
+    how: [
+      "Open Gitcoin Grants and connect your wallet (OP Mainnet supported for many rounds).",
+      "Select grantees, set amounts, and complete checkout (Quadratic Funding rounds may require passport/verification).",
+      "Confirm the donation transaction(s) and keep receipts for your records.",
+    ],
+    tiers: [
+      { label: "Donate at least $25 on Gitcoin" },
+      { label: "Donate at least $100 on Gitcoin" },
+      { label: "Donate at least $250 on Gitcoin" },
+      { label: "Donate at least $1K on Gitcoin" },
+    ],
+    external: [
+      { label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" },
+    ],
+  },
 ];
 
 // ---------- UI helpers ----------
