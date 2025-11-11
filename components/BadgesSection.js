@@ -170,7 +170,7 @@ const BADGES = [
     external: [
       { label: "Open Giveth", href: "https://giveth.io/" },
       // lien fourni par toi, ajouté comme ressource complémentaire
-      { label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" },
+      { label: "Open Giveth Projects (Base)", href: "https://giveth.io/projects/all?filter=AcceptFundOnBase" },
     ],
   },
 ];
