@@ -288,7 +288,7 @@ const BADGES = [
     ],
   },
 
-  // S8 Super User — NEW
+  // S8 Super User
   {
     id: "s8-super-user",
     title: "S8 Super User",
@@ -312,6 +312,29 @@ const BADGES = [
     ],
     external: [
       { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
+    ],
+  },
+
+  // Self Verification — NEW
+  {
+    id: "self-verification",
+    title: "Self Verification",
+    chain: "Celo",
+    image: "/badges/selfbadge.png",
+    summary:
+      "Verify your uniqueness and country using Self Protocol’s ZK passport on Celo. Additionally, Self launched a points campaign.",
+    why:
+      "Self provides privacy-preserving country verification. Some apps use it for sybil resistance and eligibility checks while keeping personal data off-chain.",
+    how: [
+      "Install the Self app on Android or iOS.",
+      "Create your account and complete the in-app country verification flow.",
+      "Link/use the same wallet in your dapps to present your proof when required.",
+    ],
+    tiers: [{ label: "Verify your Country via Self" }],
+    external: [
+      { label: "Join Self", href: "https://referral.self.xyz/referral/0x4B741c1047419557D2d1Ac0014A723BBFa3Efcbb" },
+      { label: "Get Self (Android)", href: "https://play.google.com/store/apps/details?id=com.proofofpassportapp" },
+      { label: "Get Self (iOS)", href: "https://apps.apple.com/fr/app/self-zk-passport-identity/id6478563710" },
     ],
   },
 ];
