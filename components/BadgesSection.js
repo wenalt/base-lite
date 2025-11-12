@@ -197,7 +197,7 @@ const BADGES = [
     ],
   },
 
-  // Worldcoin Verification — NEW
+  // Worldcoin Verification
   {
     id: "worldcoin-verification",
     title: "Worldcoin Verification",
@@ -223,6 +223,23 @@ const BADGES = [
         href: "https://apps.apple.com/no/app/world-app-worldcoin-wallet/id1560859847",
       },
     ],
+  },
+
+  // Early Power User — NEW
+  {
+    id: "early-power-user",
+    title: "Early Power User",
+    chain: "Optimism",
+    image: "/badges/epubadge.png",
+    summary: "Be among the first 100 accounts to reach Level 3.",
+    why:
+      "Recognizes early power users on OP Mainnet who actively explore features and level up quickly.",
+    how: [
+      "Create your account and start using the product on OP Mainnet.",
+      "Complete actions that grant XP and progress through levels.",
+      "Reach Level 3 — only the first 100 accounts qualify.",
+    ],
+    tiers: [{ label: "Reach Level 3" }],
   },
 ];
 
