@@ -167,9 +167,7 @@ const BADGES = [
       { label: "Donate at least $250 on Giveth" },
       { label: "Donate at least $1K on Giveth" },
     ],
-    external: [
-      { label: "Open Giveth", href: "https://giveth.io/" },
-    ],
+    external: [{ label: "Open Giveth", href: "https://giveth.io/" }],
   },
 
   // Gitcoin Donor (OP Mainnet)
@@ -192,9 +190,7 @@ const BADGES = [
       { label: "Donate at least $250 on Gitcoin" },
       { label: "Donate at least $1K on Gitcoin" },
     ],
-    external: [
-      { label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" },
-    ],
+    external: [{ label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" }],
   },
 
   // Worldcoin Verification
@@ -265,7 +261,7 @@ const BADGES = [
     ],
   },
 
-  // S7 Super User — NEW
+  // S7 Super User
   {
     id: "s7-super-user",
     title: "S7 Super User",
@@ -286,6 +282,33 @@ const BADGES = [
       { label: "150 transactions made on Superchain in Season 7" },
       { label: "350 transactions made on Superchain in Season 7" },
       { label: "1K transactions made on Superchain in Season 7" },
+    ],
+    external: [
+      { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
+    ],
+  },
+
+  // S8 Super User — NEW
+  {
+    id: "s8-super-user",
+    title: "S8 Super User",
+    chain: "Superchain (Season 8)",
+    image: "/badges/s8subadge.png",
+    summary:
+      "Make transactions across Superchain during Season 8. Higher tiers reflect more onchain activity across supported chains.",
+    why:
+      "Demonstrates active, multi-chain participation in the Superchain ecosystem during Season 8.",
+    how: [
+      "Use apps across OP Stack networks (Base, OP Mainnet, Mode, Zora, Frax, Metal, etc.).",
+      "Do everyday transactions (swaps, mints, bridges, payments, deploys).",
+      "Accumulate transactions during Season 8 to hit higher tiers.",
+    ],
+    tiers: [
+      { label: "25 transactions made on Superchain in Season 8" },
+      { label: "70 transactions made on Superchain in Season 8" },
+      { label: "150 transactions made on Superchain in Season 8" },
+      { label: "350 transactions made on Superchain in Season 8" },
+      { label: "1K transactions made on Superchain in Season 8" },
     ],
     external: [
       { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
