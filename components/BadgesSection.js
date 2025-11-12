@@ -242,7 +242,7 @@ const BADGES = [
     tiers: [{ label: "Reach Level 3" }],
   },
 
-  // Super Cohort 24 — NEW
+  // Super Cohort 24
   {
     id: "super-cohort-24",
     title: "Super Cohort 24",
@@ -262,6 +262,33 @@ const BADGES = [
         label: "Announcement / recap",
         href: "https://www.superchain.eco/insights/announcing-super-contributor-cohort-0",
       },
+    ],
+  },
+
+  // S7 Super User — NEW
+  {
+    id: "s7-super-user",
+    title: "S7 Super User",
+    chain: "Superchain (Season 7)",
+    image: "/badges/s7subadge.png",
+    summary:
+      "Make transactions across Superchain during Season 7. Higher tiers reflect more onchain activity across supported chains.",
+    why:
+      "This badge showcases consistent multi-chain usage in the Superchain ecosystem and encourages exploring several OP Stack networks.",
+    how: [
+      "Bridge to and use apps on Superchain networks (e.g., Base, OP Mainnet, Mode, Zora, Frax, Metal).",
+      "Transact normally: swaps, mints, bridges, payments, deploys — they all count.",
+      "Accumulate transactions during Season 7 to reach higher tiers.",
+    ],
+    tiers: [
+      { label: "25 transactions made on Superchain in Season 7" },
+      { label: "70 transactions made on Superchain in Season 7" },
+      { label: "150 transactions made on Superchain in Season 7" },
+      { label: "350 transactions made on Superchain in Season 7" },
+      { label: "1K transactions made on Superchain in Season 7" },
+    ],
+    external: [
+      { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
     ],
   },
 ];
