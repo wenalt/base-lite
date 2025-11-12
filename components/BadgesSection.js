@@ -172,7 +172,7 @@ const BADGES = [
     ],
   },
 
-  // Gitcoin Donor (OP Mainnet) — NEW
+  // Gitcoin Donor (OP Mainnet)
   {
     id: "gitcoin-donor",
     title: "Gitcoin Donor",
@@ -194,6 +194,34 @@ const BADGES = [
     ],
     external: [
       { label: "Open Gitcoin Grants", href: "https://grants.gitcoin.co/" },
+    ],
+  },
+
+  // Worldcoin Verification — NEW
+  {
+    id: "worldcoin-verification",
+    title: "Worldcoin Verification",
+    chain: "World",
+    image: "/badges/wcvbadge.png",
+    summary:
+      "Verify your personhood with World App to unlock proof-of-uniqueness benefits across supported apps.",
+    why:
+      "Worldcoin verification provides a sybil-resistance signal (one-human-per-proof) that some apps use to prevent spam and enable fair distributions.",
+    how: [
+      "Install World App on your phone.",
+      "Create or restore your account and find a nearby Orb to schedule a verification.",
+      "Complete the in-person verification; your World ID will be available in the app.",
+    ],
+    tiers: [{ label: "Get verified with Worldcoin" }],
+    external: [
+      {
+        label: "Get World App (Android)",
+        href: "https://play.google.com/store/apps/details?id=com.worldcoin",
+      },
+      {
+        label: "Get World App (iOS)",
+        href: "https://apps.apple.com/no/app/world-app-worldcoin-wallet/id1560859847",
+      },
     ],
   },
 ];
