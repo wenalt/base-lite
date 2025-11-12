@@ -225,7 +225,7 @@ const BADGES = [
     ],
   },
 
-  // Early Power User — NEW
+  // Early Power User
   {
     id: "early-power-user",
     title: "Early Power User",
@@ -240,6 +240,29 @@ const BADGES = [
       "Reach Level 3 — only the first 100 accounts qualify.",
     ],
     tiers: [{ label: "Reach Level 3" }],
+  },
+
+  // Super Cohort 24 — NEW
+  {
+    id: "super-cohort-24",
+    title: "Super Cohort 24",
+    chain: "Optimism",
+    image: "/badges/sc24badge.png",
+    summary:
+      "Graduated from Super Cohort 0. Note: this program/badge is no longer available to join.",
+    why:
+      "Super Cohort 24 celebrated the first graduating cohort (Cohort 0) of Superchain contributors. It’s a legacy badge that recognizes early community members.",
+    how: [
+      "Participate in Super Cohort 0 activities and complete all requirements.",
+      "Graduate from the cohort to receive recognition.",
+    ],
+    tiers: [{ label: "Complete Super Cohort 0" }],
+    external: [
+      {
+        label: "Announcement / recap",
+        href: "https://www.superchain.eco/insights/announcing-super-contributor-cohort-0",
+      },
+    ],
   },
 ];
 
