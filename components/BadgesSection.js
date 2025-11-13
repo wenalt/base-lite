@@ -338,7 +338,7 @@ const BADGES = [
     ],
   },
 
-  // SuperStacks — NEW (Season 7, concluded)
+  // SuperStacks (Season 7, concluded)
   {
     id: "superstacks",
     title: "SuperStacks",
@@ -362,6 +362,32 @@ const BADGES = [
     ],
     external: [
       { label: "About SuperStacks", href: "https://www.superchain.eco/programs/superstacks" },
+    ],
+  },
+
+  // Lisk Surge — NEW (Season 7)
+  {
+    id: "lisk-surge",
+    title: "Lisk Surge",
+    chain: "Lisk",
+    image: "/badges/lisksurgebadge.png",
+    summary:
+      "LSK earned during the Lisk Surge campaign (Season 7). Earn more LSK to reach higher tiers.",
+    why:
+      "Lisk Surge highlighted activity on the Lisk OP Stack chain by rewarding users who earned LSK during the campaign.",
+    how: [
+      "Use apps on Lisk and participate in eligible activities during the campaign window.",
+      "Earn LSK through supported actions and accumulate totals to progress.",
+    ],
+    tiers: [
+      { label: "5 LSK earned during the Lisk Surge campaign" },
+      { label: "25 LSK earned during the Lisk Surge campaign" },
+      { label: "100 LSK earned during the Lisk Surge campaign" },
+      { label: "1K LSK earned during the Lisk Surge campaign" },
+      { label: "5K LSK earned during the Lisk Surge campaign" },
+    ],
+    external: [
+      { label: "About Lisk Surge", href: "https://www.superchain.eco/programs/lisk-surge" },
     ],
   },
 ];
