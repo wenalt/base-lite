@@ -391,7 +391,7 @@ const BADGES = [
     ],
   },
 
-  // ETH Vault Deposits — NEW
+  // ETH Vault Deposits
   {
     id: "eth-vault-deposits",
     title: "ETH Vault Deposits",
@@ -415,6 +415,29 @@ const BADGES = [
     ],
     external: [
       { label: "Open Superchain Vaults", href: "https://account.superchain.eco/vaults" },
+    ],
+  },
+
+  // Citizen — NEW
+  {
+    id: "citizen",
+    title: "Citizen",
+    chain: "OP Mainnet",
+    image: "/badges/citibadge.png",
+    summary:
+      "Become an Optimism Citizen by owning a wallet that has been granted Citizenship on OP Mainnet.",
+    why:
+      "Optimism Citizenship recognizes active, values-aligned contributors to the Optimism Collective. Being a Citizen gives you a voice in Citizens' House governance and signals long-term commitment to the ecosystem.",
+    how: [
+      "Explore Optimism governance and community channels to understand how Citizenship is granted.",
+      "Contribute to the Optimism ecosystem (building, governance, public goods, community) so you can become eligible for a Citizenship grant.",
+      "Once one of your wallets is a Citizen wallet, keep ownership of that wallet to satisfy the badge condition.",
+    ],
+    tiers: [
+      { label: "Be the owner of a wallet who is a Citizen" },
+    ],
+    external: [
+      { label: "Learn about Optimism Citizenship", href: "https://atlas.optimism.io/citizenship" },
     ],
   },
 ];
