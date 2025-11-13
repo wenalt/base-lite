@@ -193,6 +193,18 @@ export default function Home() {
           <div style={{ opacity: 0.9, marginBottom: 12 }}>Explore Base resources & tools.</div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
+            {/* NEW: Superchain Eco S8 button (first ecosystem button) */}
+            <a
+              className="btn-superchain-eco-s8"
+              href="https://account.superchain.eco/campaigns/s8-superchain-eco"
+              target="_blank"
+              rel="noreferrer"
+              style={pill(true)}
+              title="Superchain Eco S8"
+            >
+              Superchain Eco S8
+            </a>
+
             <a
               className="btn-base-ecosystem"
               href="https://www.base.org/ecosystem"
