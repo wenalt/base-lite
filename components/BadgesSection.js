@@ -315,7 +315,7 @@ const BADGES = [
     ],
   },
 
-  // Self Verification — NEW
+  // Self Verification
   {
     id: "self-verification",
     title: "Self Verification",
@@ -335,6 +335,33 @@ const BADGES = [
       { label: "Join Self", href: "https://referral.self.xyz/referral/0x4B741c1047419557D2d1Ac0014A723BBFa3Efcbb" },
       { label: "Get Self (Android)", href: "https://play.google.com/store/apps/details?id=com.proofofpassportapp" },
       { label: "Get Self (iOS)", href: "https://apps.apple.com/fr/app/self-zk-passport-identity/id6478563710" },
+    ],
+  },
+
+  // SuperStacks — NEW (Season 7, concluded)
+  {
+    id: "superstacks",
+    title: "SuperStacks",
+    chain: "Superchain (Season 7)",
+    image: "/badges/superstacksbadge.png",
+    summary:
+      "XP earned during the SuperStacks campaign (Season 7). Note: this campaign has ended and the badge is no longer obtainable.",
+    why:
+      "SuperStacks rewarded cross-ecosystem activity with XP during Season 7, encouraging users to explore multiple OP Stack chains and apps.",
+    how: [
+      "Participate in SuperStacks Season 7 activities across supported chains.",
+      "Earn XP by completing eligible onchain actions during the campaign window.",
+      "Accumulate enough XP to reach higher tiers.",
+    ],
+    tiers: [
+      { label: "100K XP earned during SuperStacks campaign" },
+      { label: "1M XP earned during SuperStacks campaign" },
+      { label: "5M XP earned during SuperStacks campaign" },
+      { label: "10M XP earned during SuperStacks campaign" },
+      { label: "25M XP earned during SuperStacks campaign" },
+    ],
+    external: [
+      { label: "About SuperStacks", href: "https://www.superchain.eco/programs/superstacks" },
     ],
   },
 ];
