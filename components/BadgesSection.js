@@ -390,6 +390,33 @@ const BADGES = [
       { label: "About Lisk Surge", href: "https://www.superchain.eco/programs/lisk-surge" },
     ],
   },
+
+  // ETH Vault Deposits — NEW
+  {
+    id: "eth-vault-deposits",
+    title: "ETH Vault Deposits",
+    chain: "OP Mainnet",
+    image: "/badges/ethvdbadge.png",
+    summary:
+      "Deposit ETH into the WETH Super Vaults on OP Mainnet to progress through reward tiers.",
+    why:
+      "Using the WETH Super Vaults puts your ETH to work directly in the Superchain ecosystem, helping deepen liquidity on OP Mainnet while you earn yield and points.",
+    how: [
+      "Open the Superchain Vaults page on OP Mainnet.",
+      "Connect your wallet and choose the WETH Super Vaults product.",
+      "Deposit ETH into the vaults and keep your position to maintain your badge progress.",
+    ],
+    tiers: [
+      { label: "Deposit ETH in the WETH Super Vaults (Tier 1)" },
+      { label: "Deposit more ETH in the WETH Super Vaults (Tier 2)" },
+      { label: "Deposit more ETH in the WETH Super Vaults (Tier 3)" },
+      { label: "Deposit more ETH in the WETH Super Vaults (Tier 4)" },
+      { label: "Deposit more ETH in the WETH Super Vaults (Tier 5)" },
+    ],
+    external: [
+      { label: "Open Superchain Vaults", href: "https://account.superchain.eco/vaults" },
+    ],
+  },
 ];
 
 // ---------- UI helpers ----------
