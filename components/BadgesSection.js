@@ -221,6 +221,34 @@ const BADGES = [
     ],
   },
 
+  // World User — NEW
+  {
+    id: "world-user",
+    title: "World User",
+    chain: "World",
+    image: "/badges/wubadge.png",
+    summary:
+      "Make onchain transactions on the World chain. Higher tiers reflect more activity and a deeper footprint in the World ecosystem.",
+    why:
+      "World User tracks how actively you transact on World. Consistent usage signals that you are not just verified, but also an engaged participant in the network’s economy.",
+    how: [
+      "Set up a wallet that supports the World chain (for example via World App or a compatible EVM wallet once support is available).",
+      "Bridge or receive funds on World so you can pay gas and interact with apps.",
+      "Use World regularly: send transactions, interact with dapps, and move value onchain.",
+      "As your total transaction count on World increases, you progress through the different tiers of the badge.",
+    ],
+    tiers: [
+      { label: "5 transactions made on World" },
+      { label: "20 transactions made on World" },
+      { label: "50 transactions made on World" },
+      { label: "100 transactions made on World" },
+      { label: "250 transactions made on World" },
+    ],
+    external: [
+      { label: "Learn about World", href: "https://world.org/" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
