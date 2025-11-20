@@ -365,6 +365,38 @@ const BADGES = [
     ],
   },
 
+  // Lisk Airdrop S1 — NEW
+  {
+    id: "lisk-airdrop-s1",
+    title: "Lisk Airdrop S1",
+    chain: "Lisk",
+    image: "/badges/liskabadge.png",
+    summary:
+      "Seasonal airdrop on the Lisk OP Stack chain. Join the verified airdrop Guild and complete tasks to earn Season 1 points and LSK rewards.",
+    why:
+      "Lisk Airdrop Season 1 rewards early onchain usage of the Lisk network. By joining the verified airdrop cohort and completing tasks, you build a clear Lisk-specific footprint that can convert into both LSK rewards and Superchain reputation.",
+    how: [
+      "Open the official Lisk Airdrop portal.",
+      "Connect an EVM-compatible wallet (e.g. MetaMask, Rabby, Phantom) and use the portal’s “Switch to Lisk” flow to add the Lisk network.",
+      "Bridge a small amount of ETH to Lisk so you can pay gas for your transactions.",
+      "Click “Verify with Guild” in the portal and complete at least 2 of the listed requirements to join the Verified Airdrop participant Guild.",
+      "Back on the portal, enter the referral code se2024 to unlock the Season 1 dashboard, then complete tasks over time to accumulate points for the airdrop.",
+    ],
+    tiers: [
+      { label: "Join the Verified Airdrop participant Guild for Lisk Season 1" },
+    ],
+    external: [
+      {
+        label: "How To: Lisk Airdrop Season 1",
+        href: "https://www.superchain.eco/insights/how-to-lisk-airdrop-season-1",
+      },
+      {
+        label: "Open Lisk Airdrop portal",
+        href: "https://portal.lisk.com/",
+      },
+    ],
+  },
+
   // Lisk Surge — NEW (Season 7)
   {
     id: "lisk-surge",
