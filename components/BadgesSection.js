@@ -414,6 +414,34 @@ const BADGES = [
     ],
   },
 
+  // Ink User — NEW
+  {
+    id: "ink-user",
+    title: "Ink User",
+    chain: "Ink",
+    image: "/badges/inkuserbadge.png",
+    summary:
+      "Make onchain transactions on Ink, Kraken’s OP Stack L2 in the Optimism Superchain. Higher tiers reflect more activity and a deeper footprint in the Ink ecosystem.",
+    why:
+      "Ink User showcases your direct onchain activity on Ink. Consistent usage helps bootstrap liquidity, test apps, and bridge Kraken users into DeFi on the Superchain.",
+    how: [
+      "Bridge ETH or other supported assets to Ink so you can pay gas for your transactions.",
+      "Add Ink to your wallet via the official Ink portal or supported chain lists, then connect to Ink dapps.",
+      "Use Ink regularly: swaps, mints, deposits, lending, and other dapp interactions all count toward your total.",
+      "As your total transaction count on Ink increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Ink" },
+      { label: "20 transactions made on Ink" },
+      { label: "50 transactions made on Ink" },
+      { label: "100 transactions made on Ink" },
+      { label: "250 transactions made on Ink" },
+    ],
+    external: [
+      { label: "Explore Ink apps", href: "https://inkonchain.com/apps" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
