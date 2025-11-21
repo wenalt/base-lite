@@ -249,6 +249,34 @@ const BADGES = [
     ],
   },
 
+  // Base User — NEW
+  {
+    id: "base-user",
+    title: "Base User",
+    chain: "Base",
+    image: "/badges/baseuserbadge.png",
+    summary:
+      "Make onchain transactions on the Base layer-2 network. Higher tiers reflect more activity and a deeper footprint in the Base ecosystem.",
+    why:
+      "Base User recognizes consistent onchain usage of Base, the Ethereum L2 built with the OP Stack and incubated by Coinbase. Activity here shows that you are actively exploring apps and contributing to liquidity and usage on Base.",
+    how: [
+      "Bridge ETH to Base using an official or trusted bridge so you can pay gas.",
+      "Connect your wallet to Base-native or Superchain apps and start using them (swaps, mints, deposits, payments, etc.).",
+      "Use Base regularly over time; every onchain interaction counts toward your total transactions.",
+      "As your total transaction count on Base increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Base" },
+      { label: "20 transactions made on Base" },
+      { label: "50 transactions made on Base" },
+      { label: "100 transactions made on Base" },
+      { label: "250 transactions made on Base" },
+    ],
+    external: [
+      { label: "Learn about Base", href: "https://www.base.org/" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
