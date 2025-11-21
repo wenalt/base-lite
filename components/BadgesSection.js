@@ -244,9 +244,7 @@ const BADGES = [
       { label: "100 transactions made on World" },
       { label: "250 transactions made on World" },
     ],
-    external: [
-      { label: "Learn about World", href: "https://world.org/" },
-    ],
+    external: [{ label: "Learn about World", href: "https://world.org/" }],
   },
 
   // Base User — NEW
@@ -272,8 +270,37 @@ const BADGES = [
       { label: "100 transactions made on Base" },
       { label: "250 transactions made on Base" },
     ],
+    external: [{ label: "Learn about Base", href: "https://www.base.org/" }],
+  },
+
+  // OP Mainnet User — NEW
+  {
+    id: "op-mainnet-user",
+    title: "OP Mainnet User",
+    chain: "OP Mainnet",
+    image: "/badges/opuserbadge.png",
+    summary:
+      "Make onchain transactions on OP Mainnet, the original Optimism network. Higher tiers reflect more activity and a deeper footprint in the OP Mainnet ecosystem.",
+    why:
+      "OP Mainnet User highlights your direct usage of OP Mainnet itself, not just other OP Stack chains. Regular activity here signals that you are helping secure, test, and grow the core Optimism ecosystem.",
+    how: [
+      "Add OP Mainnet to your wallet (most wallets support it natively or via chain lists).",
+      "Bridge ETH or other supported assets to OP Mainnet so you can pay gas and transact.",
+      "Use OP Mainnet apps regularly: swaps, mints, bridges, deposits, governance, and other dapp interactions.",
+      "As your total transaction count on OP Mainnet increases, you progress through the different tiers of the badge.",
+    ],
+    tiers: [
+      { label: "5 transactions made on OP Mainnet" },
+      { label: "20 transactions made on OP Mainnet" },
+      { label: "50 transactions made on OP Mainnet" },
+      { label: "100 transactions made on OP Mainnet" },
+      { label: "250 transactions made on OP Mainnet" },
+    ],
     external: [
-      { label: "Learn about Base", href: "https://www.base.org/" },
+      {
+        label: "Learn about OP Mainnet",
+        href: "https://www.superchain.eco/chains/op-mainnet",
+      },
     ],
   },
 
@@ -339,9 +366,7 @@ const BADGES = [
       { label: "350 transactions made on Superchain in Season 7" },
       { label: "1K transactions made on Superchain in Season 7" },
     ],
-    external: [
-      { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
-    ],
+    external: [{ label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" }],
   },
 
   // S8 Super User
@@ -366,9 +391,7 @@ const BADGES = [
       { label: "350 transactions made on Superchain in Season 8" },
       { label: "1K transactions made on Superchain in Season 8" },
     ],
-    external: [
-      { label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" },
-    ],
+    external: [{ label: "Explore Superchain chains", href: "https://www.superchain.eco/chains" }],
   },
 
   // Self Verification
@@ -388,9 +411,18 @@ const BADGES = [
     ],
     tiers: [{ label: "Verify your Country via Self" }],
     external: [
-      { label: "Join Self", href: "https://referral.self.xyz/referral/0x4B741c1047419557D2d1Ac0014A723BBFa3Efcbb" },
-      { label: "Get Self (Android)", href: "https://play.google.com/store/apps/details?id=com.proofofpassportapp" },
-      { label: "Get Self (iOS)", href: "https://apps.apple.com/fr/app/self-zk-passport-identity/id6478563710" },
+      {
+        label: "Join Self",
+        href: "https://referral.self.xyz/referral/0x4B741c1047419557D2d1Ac0014A723BBFa3Efcbb",
+      },
+      {
+        label: "Get Self (Android)",
+        href: "https://play.google.com/store/apps/details?id=com.proofofpassportapp",
+      },
+      {
+        label: "Get Self (iOS)",
+        href: "https://apps.apple.com/fr/app/self-zk-passport-identity/id6478563710",
+      },
     ],
   },
 
@@ -438,9 +470,7 @@ const BADGES = [
       "Click “Verify with Guild” in the portal and complete at least 2 of the listed requirements to join the Verified Airdrop participant Guild.",
       "Back on the portal, enter the referral code se2024 to unlock the Season 1 dashboard, then complete tasks over time to accumulate points for the airdrop.",
     ],
-    tiers: [
-      { label: "Join the Verified Airdrop participant Guild for Lisk Season 1" },
-    ],
+    tiers: [{ label: "Join the Verified Airdrop participant Guild for Lisk Season 1" }],
     external: [
       {
         label: "How To: Lisk Airdrop Season 1",
@@ -521,11 +551,12 @@ const BADGES = [
       "Contribute to the Optimism ecosystem (building, governance, public goods, community) so you can become eligible for a Citizenship grant.",
       "Once one of your wallets is a Citizen wallet, keep ownership of that wallet to satisfy the badge condition.",
     ],
-    tiers: [
-      { label: "Be the owner of a wallet who is a Citizen" },
-    ],
+    tiers: [{ label: "Be the owner of a wallet who is a Citizen" }],
     external: [
-      { label: "Learn about Optimism Citizenship", href: "https://atlas.optimism.io/citizenship" },
+      {
+        label: "Learn about Optimism Citizenship",
+        href: "https://atlas.optimism.io/citizenship",
+      },
     ],
   },
 ];
