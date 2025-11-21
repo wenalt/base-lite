@@ -391,7 +391,7 @@ const BADGES = [
     id: "soneium-user",
     title: "Soneium User",
     chain: "Soneium",
-    image: "/badges/soneiumbadgeuser.png",
+    image: "/badges/soneiumuserbadge.png",
     summary:
       "Make onchain transactions on Soneium, an OP Stack L2 in the Superchain ecosystem. Higher tiers reflect more activity and a deeper footprint in the Soneium ecosystem.",
     why:
