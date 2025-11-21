@@ -304,6 +304,32 @@ const BADGES = [
     ],
   },
 
+  // Mode User — NEW
+  {
+    id: "mode-user",
+    title: "Mode User",
+    chain: "Mode",
+    image: "/badges/modeuserbadge.png",
+    summary:
+      "Make onchain transactions on Mode, the Ethereum L2 focused on sequencing and yield. Higher tiers reflect more activity and a deeper footprint in the Mode ecosystem.",
+    why:
+      "Mode User captures your direct transactional activity on Mode. Consistent usage helps bootstrap liquidity, test apps, and grow Mode as a Superchain-aligned L2.",
+    how: [
+      "Bridge ETH to Mode using an official or trusted bridge so you can pay gas.",
+      "Connect your wallet to Mode-native apps or the Mode Early campaign page.",
+      "Use Mode regularly: swaps, mints, deposits, lending, and other dapp interactions all count.",
+      "As your total transaction count on Mode increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Mode" },
+      { label: "20 transactions made on Mode" },
+      { label: "50 transactions made on Mode" },
+    ],
+    external: [
+      { label: "Mode Early Campaign", href: "https://app.mode.network/early/" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
