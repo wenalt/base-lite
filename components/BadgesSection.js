@@ -330,6 +330,34 @@ const BADGES = [
     ],
   },
 
+  // Unichain User — NEW
+  {
+    id: "unichain-user",
+    title: "Unichain User",
+    chain: "Unichain",
+    image: "/badges/uniuserbadge.png",
+    summary:
+      "Make onchain transactions on Unichain, the L2 focused around the Uniswap ecosystem. Higher tiers reflect more activity and a deeper footprint in the Unichain ecosystem.",
+    why:
+      "Unichain User tracks how actively you transact on Unichain. Consistent activity here shows you are exploring Uniswap-native apps, providing liquidity, and helping grow this OP Stack network.",
+    how: [
+      "Bridge ETH or other supported assets to Unichain using an official or trusted bridge so you can pay gas.",
+      "Add Unichain to your wallet (via chain list or the Unichain app) and connect to supported dapps.",
+      "Use Unichain regularly: swaps, liquidity provision, mints, deposits, and other dapp interactions all count.",
+      "As your total transaction count on Unichain increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Unichain" },
+      { label: "20 transactions made on Unichain" },
+      { label: "50 transactions made on Unichain" },
+      { label: "100 transactions made on Unichain" },
+      { label: "250 transactions made on Unichain" },
+    ],
+    external: [
+      { label: "Explore Unichain", href: "https://www.unichain.org/explore" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
