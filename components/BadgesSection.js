@@ -386,6 +386,34 @@ const BADGES = [
     ],
   },
 
+  // Soneium User — NEW
+  {
+    id: "soneium-user",
+    title: "Soneium User",
+    chain: "Soneium",
+    image: "/badges/soneiumbadgeuser.png",
+    summary:
+      "Make onchain transactions on Soneium, an OP Stack L2 in the Superchain ecosystem. Higher tiers reflect more activity and a deeper footprint in the Soneium ecosystem.",
+    why:
+      "Soneium User highlights your direct activity on Soneium. Consistent usage helps test dapps, deepen liquidity, and support the growth of this Ethereum-aligned L2.",
+    how: [
+      "Bridge ETH or other supported assets to Soneium so you can pay gas for your transactions.",
+      "Add Soneium to your wallet via official chain configs or supported chain lists, then connect to Soneium dapps.",
+      "Use Soneium regularly: swaps, mints, deposits, lending, and other dapp interactions all count toward your total.",
+      "As your total transaction count on Soneium increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Soneium" },
+      { label: "20 transactions made on Soneium" },
+      { label: "50 transactions made on Soneium" },
+      { label: "100 transactions made on Soneium" },
+      { label: "250 transactions made on Soneium" },
+    ],
+    external: [
+      { label: "Explore the Soneium ecosystem", href: "https://soneium.org/en/ecosystem/" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
