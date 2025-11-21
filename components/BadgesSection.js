@@ -358,6 +358,34 @@ const BADGES = [
     ],
   },
 
+  // Lisk User — NEW
+  {
+    id: "lisk-user",
+    title: "Lisk User",
+    chain: "Lisk",
+    image: "/badges/liskuserbadge.png",
+    summary:
+      "Make onchain transactions on Lisk, an OP Stack chain in the Superchain ecosystem. Higher tiers reflect more activity and a deeper footprint in the Lisk ecosystem.",
+    why:
+      "Lisk User showcases your direct onchain activity on the Lisk network. Regular usage helps test apps, deepen liquidity, and support the growth of Lisk as part of the broader Superchain.",
+    how: [
+      "Bridge ETH or other supported assets to Lisk so you can pay gas for your transactions.",
+      "Add Lisk to your wallet via the official Lisk portal or supported chain lists and connect to Lisk dapps.",
+      "Use Lisk regularly: swaps, mints, deposits, lending, and other dapp interactions all count toward your total.",
+      "As your total transaction count on Lisk increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Lisk" },
+      { label: "20 transactions made on Lisk" },
+      { label: "50 transactions made on Lisk" },
+      { label: "100 transactions made on Lisk" },
+      { label: "250 transactions made on Lisk" },
+    ],
+    external: [
+      { label: "Explore the Lisk ecosystem", href: "https://lisk.com/ecosystem/" },
+    ],
+  },
+
   // Early Power User
   {
     id: "early-power-user",
