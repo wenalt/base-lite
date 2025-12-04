@@ -273,6 +273,34 @@ const BADGES = [
     external: [{ label: "Learn about Base", href: "https://www.base.org/" }],
   },
 
+  // Celo User — NEW
+  {
+    id: "celo-user",
+    title: "Celo User",
+    chain: "Celo",
+    image: "/badges/celouserbadge.png",
+    summary:
+      "Make onchain transactions on Celo. Higher tiers reflect more activity and a deeper footprint in the Celo ecosystem.",
+    why:
+      "Celo User showcases your direct usage of the Celo blockchain. Regular activity here signals that you are helping grow Celo’s mobile-first, impact-focused onchain economy.",
+    how: [
+      "Set up a wallet that supports the Celo network (for example an EVM wallet that can add the Celo chain).",
+      "Bridge or receive assets on Celo so you can pay gas and interact with apps.",
+      "Use Celo dapps regularly: payments, swaps, stablecoin transfers, mints, and other onchain actions all count.",
+      "As your total transaction count on Celo increases, you move up through the different badge tiers.",
+    ],
+    tiers: [
+      { label: "5 transactions made on Celo" },
+      { label: "20 transactions made on Celo" },
+      { label: "50 transactions made on Celo" },
+      { label: "100 transactions made on Celo" },
+      { label: "250 transactions made on Celo" },
+    ],
+    external: [
+      { label: "Explore the Celo ecosystem", href: "https://celo.org/ecosystem" },
+    ],
+  },
+
   // OP Mainnet User — NEW
   {
     id: "op-mainnet-user",
