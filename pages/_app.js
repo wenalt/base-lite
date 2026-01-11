@@ -1,15 +1,21 @@
 // pages/_app.js
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { AppKitProvider } from '../lib/appkit'
+import { AppKitProvider, initAppKitClient } from '../lib/appkit'
 
 export default function App({ Component, pageProps }) {
   // Persisted theme: 'auto' | 'light' | 'dark'
   const [theme, setTheme] = useState('auto')
 
+  // 🔑 CRITIQUE — init AppKit ONCE côté client
+  useEffect(() => {
+    initAppKitClient()
+  }, [])
+
   // Apply theme to <html data-theme="">
   useEffect(() => {
-    const saved = typeof window !== 'undefined' && localStorage.getItem('theme')
+    const saved =
+      typeof window !== 'undefined' && localStorage.getItem('theme')
     const t = saved || 'auto'
     setTheme(t)
     document.documentElement.dataset.theme = t
@@ -45,48 +51,48 @@ export default function App({ Component, pageProps }) {
 
             --chip-bg: #ffffff;
             --chip-fg: #111;
-            --chip-border: rgba(0,0,0,0.08);
+            --chip-border: rgba(0, 0, 0, 0.08);
 
             --bg: var(--base-blue);
             --fg: #0e1116;
 
-            --card-bg: rgba(255,255,255,0.10);
-            --card-border: rgba(255,255,255,0.22);
+            --card-bg: rgba(255, 255, 255, 0.10);
+            --card-border: rgba(255, 255, 255, 0.22);
             --card-fg: #ffffff;
-            --shadow: 0 8px 24px rgba(0,0,0,0.2);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
           }
 
-          /* Dark overrides when user forces dark */
-          [data-theme="dark"] {
+          [data-theme='dark'] {
             --bg: var(--base-blue-dark);
             --fg: #e6e8f0;
 
-            --chip-bg: rgba(255,255,255,0.08);
+            --chip-bg: rgba(255, 255, 255, 0.08);
             --chip-fg: #e6e8f0;
-            --chip-border: rgba(255,255,255,0.14);
+            --chip-border: rgba(255, 255, 255, 0.14);
 
-            --card-bg: rgba(255,255,255,0.06);
-            --card-border: rgba(255,255,255,0.12);
+            --card-bg: rgba(255, 255, 255, 0.06);
+            --card-border: rgba(255, 255, 255, 0.12);
             --card-fg: #e6e8f0;
           }
 
-          /* Auto follows system; we scope to body for simplicity */
           @media (prefers-color-scheme: dark) {
-            [data-theme="auto"] {
+            [data-theme='auto'] {
               --bg: var(--base-blue-dark);
               --fg: #e6e8f0;
 
-              --chip-bg: rgba(255,255,255,0.08);
+              --chip-bg: rgba(255, 255, 255, 0.08);
               --chip-fg: #e6e8f0;
-              --chip-border: rgba(255,255,255,0.14);
+              --chip-border: rgba(255, 255, 255, 0.14);
 
-              --card-bg: rgba(255,255,255,0.06);
-              --card-border: rgba(255,255,255,0.12);
+              --card-bg: rgba(255, 255, 255, 0.06);
+              --card-border: rgba(255, 255, 255, 0.12);
               --card-fg: #e6e8f0;
             }
           }
 
-          html, body, #__next {
+          html,
+          body,
+          #__next {
             height: 100%;
           }
 
@@ -97,10 +103,11 @@ export default function App({ Component, pageProps }) {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI,
+              Roboto, Inter, 'Helvetica Neue', Arial, Noto Sans,
+              'Apple Color Emoji', 'Segoe UI Emoji';
           }
 
-          /* Pills */
           .chip {
             display: inline-flex;
             align-items: center;
@@ -121,7 +128,6 @@ export default function App({ Component, pageProps }) {
             border-radius: 4px;
           }
 
-          /* Card */
           .card {
             width: 100%;
             max-width: 960px;
@@ -134,7 +140,6 @@ export default function App({ Component, pageProps }) {
             backdrop-filter: blur(6px);
           }
 
-          /* Footer icon row */
           .social-row {
             display: flex;
             gap: 10px;
@@ -148,7 +153,6 @@ export default function App({ Component, pageProps }) {
             display: block;
           }
 
-          /* Prevent layout shift on small screens */
           .container {
             max-width: 1120px;
             margin: 0 auto;
@@ -156,7 +160,6 @@ export default function App({ Component, pageProps }) {
           }
         `}</style>
 
-        {/* Tiny helper for other components to update theme */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
