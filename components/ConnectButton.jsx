@@ -1,66 +1,52 @@
 // components/ConnectButton.jsx
 import { useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
-import { openConnectModal } from '../lib/appkit'   // <--
 
 export default function ConnectButton() {
-  const { isConnected } = useAccount()
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const has = () =>
+
+    const hasElements = () =>
       !!customElements.get('appkit-button') &&
       !!customElements.get('appkit-account-button') &&
       !!customElements.get('appkit-network-button')
 
-    if (has()) {
+    if (hasElements()) {
       setReady(true)
       return
     }
+
     const id = setInterval(() => {
-      if (has()) {
+      if (hasElements()) {
         setReady(true)
         clearInterval(id)
       }
     }, 100)
+
     return () => clearInterval(id)
   }, [])
 
+  // Pendant l'init AppKit → placeholder non interactif
   if (!ready) {
     return (
-      <button
-        onClick={() => openConnectModal()}
+      <div
         style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
           height: 36,
-          padding: '0 12px',
+          minWidth: 140,
           borderRadius: 12,
-          fontSize: 14,
-          fontWeight: 600,
-          border: '1px solid rgba(0,0,0,0.14)',
           background: 'rgba(0,0,0,0.08)',
-          color: '#111',
-          cursor: 'pointer'
+          border: '1px solid rgba(0,0,0,0.14)'
         }}
-        aria-label={isConnected ? 'Account' : 'Connect Wallet'}
-        title={isConnected ? 'Account' : 'Connect Wallet'}
-      >
-        {isConnected ? 'Account' : 'Connect Wallet'}
-      </button>
+      />
     )
   }
 
-  if (isConnected) {
-    return (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-        <appkit-network-button />
-        <appkit-account-button />
-      </span>
-    )
-  }
-
-  return <appkit-button />
+  // AppKit gère TOUT (connect / disconnect / account / network)
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <appkit-network-button />
+      <appkit-account-button />
+    </span>
+  )
 }
