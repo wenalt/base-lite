@@ -1,6 +1,6 @@
 // components/ConnectButton.jsx
 import { useEffect, useState } from 'react'
-import { openConnectModal } from '@/lib/appkit'
+import { openConnectModal } from '../lib/appkit'
 
 export default function ConnectButton() {
   const [ready, setReady] = useState(false)
@@ -28,7 +28,6 @@ export default function ConnectButton() {
     return () => clearInterval(id)
   }, [])
 
-  // Placeholder pendant init AppKit
   if (!ready) {
     return (
       <div
@@ -45,7 +44,6 @@ export default function ConnectButton() {
 
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-      {/* Bouton explicite pour ouvrir le modal */}
       <button
         type="button"
         onClick={openConnectModal}
@@ -62,7 +60,6 @@ export default function ConnectButton() {
         Connect Wallet
       </button>
 
-      {/* Une fois connecté, AppKit prend le relais */}
       <appkit-account-button />
     </span>
   )
