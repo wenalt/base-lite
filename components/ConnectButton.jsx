@@ -1,52 +1,17 @@
 // components/ConnectButton.jsx
-import { useEffect, useState } from 'react'
+import { useAccount } from 'wagmi'
 
 export default function ConnectButton() {
-  const [ready, setReady] = useState(false)
+  const { isConnected } = useAccount()
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const hasElements = () =>
-      !!customElements.get('appkit-button') &&
-      !!customElements.get('appkit-account-button') &&
-      !!customElements.get('appkit-network-button')
-
-    if (hasElements()) {
-      setReady(true)
-      return
-    }
-
-    const id = setInterval(() => {
-      if (hasElements()) {
-        setReady(true)
-        clearInterval(id)
-      }
-    }, 100)
-
-    return () => clearInterval(id)
-  }, [])
-
-  // Pendant l'init AppKit → placeholder non interactif
-  if (!ready) {
+  if (isConnected) {
     return (
-      <div
-        style={{
-          height: 36,
-          minWidth: 140,
-          borderRadius: 12,
-          background: 'rgba(0,0,0,0.08)',
-          border: '1px solid rgba(0,0,0,0.14)'
-        }}
-      />
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+        <appkit-network-button />
+        <appkit-account-button />
+      </span>
     )
   }
 
-  // AppKit gère TOUT (connect / disconnect / account / network)
-  return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-      <appkit-network-button />
-      <appkit-account-button />
-    </span>
-  )
+  return <appkit-button />
 }
