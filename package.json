@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint --no-inline-config --max-warnings=0 || true"
+    "start": "next start"
   },
   "dependencies": {
     "next": "14.2.35",
@@ -23,7 +22,6 @@
 
     "@coinbase/wallet-sdk": "^4.0.0",
     "@metamask/sdk": "^0.33.0",
-    "@base-org/account": "^0.1.0",
     "@gemini-wallet/core": "^1.0.0"
   },
   "engines": {
