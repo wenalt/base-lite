@@ -19,7 +19,12 @@
     "@reown/appkit": "1.7.18",
     "@reown/appkit-adapter-wagmi": "1.7.18",
 
-    "@tanstack/react-query": "5.56.2"
+    "@tanstack/react-query": "5.56.2",
+
+    "@coinbase/wallet-sdk": "^4.0.0",
+    "@metamask/sdk": "^0.33.0",
+    "@base-org/account": "^0.1.0",
+    "@gemini-wallet/core": "^1.0.0"
   },
   "engines": {
     "node": "20.x"
