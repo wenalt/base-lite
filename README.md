@@ -34,7 +34,7 @@ It mirrors Celo Lite’s minimal UI/structure, adapted to **Base**:
 
 ## Tech Stack
 
-- **Next.js 14.2.32** — React framework for the frontend
+- **Next.js 14.2.35** — React framework for the frontend
 - **React 18.3.1**
 - **Wagmi 2.12.14** — Ethereum hooks for wallet connection
 - **Viem 2.37.9** — fast and modern EVM client
@@ -57,7 +57,7 @@ The app integrates **Reown AppKit** for connection via WalletConnect, with `Wagm
 - ✅ Minimal wallet connect stub (AppKit slot ready)
 - ✅ Footer shortcuts (Discord/X/Guild Base)
 - ✅ **Daily Check-in** (one free, gas-sponsored action/day if possible)
-- 🔜 **Badges** section with compact guides (Base-aligned copy)
+- ✅ **Badges** section with compact guides (Base-aligned copy)
 - 🔜 **Creator/Builder Score** helper (Talent Protocol)
 - 🔜 Optional rewards in **$wenaltszn** for streaks/ships
 
