@@ -200,9 +200,9 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               style={pill(true)}
-              title="Superchain Eco S8"
+              title="Superchain Eco S8 (Ended)"
             >
-              Superchain Eco S8
+              Superchain Eco S8 (Ended)
             </a>
 
             <a
