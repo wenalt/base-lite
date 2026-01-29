@@ -1,25 +1,13 @@
 // components/Header.js
-import { useEffect, useState, useMemo } from 'react'
-import { appKit as importedAppKit } from '../lib/appkit' // safe if not present
+import { useEffect, useState } from 'react'
+import { openConnectModal } from '../lib/appkit'
 
 export default function Header() {
   const [isDark, setIsDark] = useState(false)
-
-  // fallback so the button doesn’t break before AppKit is wired
-  const appKit = useMemo(
-    () =>
-      importedAppKit ?? {
-        open: () => {
-          if (typeof window !== 'undefined') {
-            console.warn('appKit.open() called but AppKit is not initialized.')
-            alert('Connect is not available yet.')
-          }
-        }
-      },
-    []
-  )
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     if (typeof window === 'undefined') return
     const mq = window.matchMedia?.('(prefers-color-scheme: dark)')
     if (!mq) return
@@ -65,7 +53,7 @@ export default function Header() {
           gap: 12
         }}
       >
-        {/* left brand block (logo + title + tiny subtitle) */}
+        {/* left brand block */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img
             src="/baseicon.png"
@@ -95,7 +83,7 @@ export default function Header() {
         {/* right actions */}
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           <button
-            onClick={() => appKit.open?.()}
+            onClick={() => openConnectModal()}
             style={{
               ...pill,
               background: isDark ? '#1A4DFF' : '#013BE0',
@@ -114,7 +102,6 @@ export default function Header() {
             style={pill}
             aria-label="Farcaster"
           >
-            {/* shows icon if you later add /farcaster.png to /public */}
             <img src="/farcaster.png" alt="" style={iconImg} onError={(e)=>{e.currentTarget.style.display='none'}} />
             @wenaltszn.eth
           </a>
@@ -131,7 +118,8 @@ export default function Header() {
           </a>
 
           <div style={{ ...pill, pointerEvents: 'none' }}>
-            {isDark ? 'Dark' : 'Light'}
+            {/* FIX: Tampilkan loading atau default saat server-side rendering untuk hindari hydration error */}
+            {!mounted ? 'Auto' : (isDark ? 'Dark' : 'Light')}
           </div>
         </div>
       </div>
