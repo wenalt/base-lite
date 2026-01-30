@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Webpack config (kept as-is)
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -14,6 +15,16 @@ const nextConfig = {
     }
 
     return config
+  },
+
+  // Turbopack config (required since Next.js 16)
+  turbopack: {
+    resolveAlias: {
+      porto: false,
+      '@base-org/account': false,
+      '@gemini-wallet/core': false,
+      '@metamask/sdk': false,
+    },
   },
 }
 
