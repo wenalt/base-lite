@@ -290,6 +290,15 @@ export default function Home() {
             >
               Aave V3
             </a>
+
+            <a
+              href="https://aerodrome.finance/"
+              target="_blank"
+              rel="noreferrer"
+              style={pill(true)}
+            >
+              Aerodrome
+            </a>
           </div>
         </div>
       </section>
