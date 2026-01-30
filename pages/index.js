@@ -252,11 +252,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION DEFI */}
+      {/* DEFI */}
       <section style={{ width: '100%' }}>
         <div
           style={{
-            width: '100%',
             maxWidth: 1100,
             margin: '10px auto 0',
             padding: '18px 14px',
@@ -269,17 +268,27 @@ export default function Home() {
           }}
         >
           <div style={{ fontWeight: 800, marginBottom: 6 }}>DeFi</div>
-          <div style={{ opacity: 0.9, marginBottom: 12 }}>Base-native DeFi protocols.</div>
+          <div style={{ opacity: 0.9, marginBottom: 12 }}>
+            Base-native DeFi protocols.
+          </div>
 
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
             <a
               href="https://app.morpho.org/base/earn"
               target="_blank"
               rel="noreferrer"
               style={pill(true)}
-              title="Morpho on Base"
             >
               Morpho
+            </a>
+
+            <a
+              href="https://app.aave.com/dashboard/?marketName=proto_base_v3"
+              target="_blank"
+              rel="noreferrer"
+              style={pill(true)}
+            >
+              Aave V3
             </a>
           </div>
         </div>
