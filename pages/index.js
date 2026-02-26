@@ -283,15 +283,6 @@ export default function Home() {
             </a>
 
             <a
-              href="https://app.aave.com/dashboard/?marketName=proto_base_v3"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-            >
-              Aave V3
-            </a>
-
-            <a
               href="https://aerodrome.finance/"
               target="_blank"
               rel="noreferrer"
