@@ -1,10 +1,11 @@
 // pages/index.js
+import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import ConnectButton from '../components/ConnectButton'
 import WalletStatus from '../components/WalletStatus'
 import DailyCheckin from '../components/DailyCheckin'
-import BadgesSection from '../components/BadgesSection' // ← NEW
+import BadgesSection from '../components/BadgesSection' // <- NEW
 
 export default function Home() {
   // THEME
@@ -60,267 +61,276 @@ export default function Home() {
   const tinyIcon = { width: 18, height: 18, display: 'block', borderRadius: 4 }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: isDark ? baseBlueDark : baseBlueLight,
-        color: isDark ? textDark : textLight,
-        display: 'flex',
-        flexDirection: 'column',
-        overflowX: 'hidden'
-      }}
-    >
-      {/* HEADER — inchangé */}
-      <header
+    <>
+      <Head>
+        <meta
+          name="talentapp:project_verification"
+          content="bd056401bc9ffc61f41ae5168f8937b1a3ed5ef03fbf49fbee8e08932dd4fd72e530d78f6baa211546a159d6111653fa00c075262417d50b3f23c08aa7bfa47b"
+        />
+      </Head>
+
+      <div
         style={{
-          width: '100%',
-          maxWidth: 1100,
-          margin: '0 auto',
-          padding: '16px 16px 6px',
+          minHeight: '100vh',
+          background: isDark ? baseBlueDark : baseBlueLight,
+          color: isDark ? textDark : textLight,
           display: 'flex',
-          alignItems: 'center',
-          gap: 12
+          flexDirection: 'column',
+          overflowX: 'hidden'
         }}
       >
-        {/* BL icon */}
-        <img
-          src="/baseicon.png"
-          alt="BL"
-          width={32}
-          height={32}
-          style={{ borderRadius: 8, display: 'block' }}
-        />
-
-        {/* Title + subtitle */}
-        <div style={{ lineHeight: 1.05, marginRight: 4 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
-            Base Lite
-          </div>
-          <div style={{ fontSize: 12, opacity: 0.9 }}>
-            Ecosystem - Superchain Eco
-          </div>
-        </div>
-
-        {/* Superchain Eco (à gauche du header, juste après le sous-titre) */}
-        <a
-          href="https://www.superchain.eco/"
-          target="_blank"
-          rel="noreferrer"
-          style={pill(true)}
-          aria-label="Superchain Eco"
-          title="Superchain Eco"
-        >
-          <img src="/selogo.png" alt="SE" style={tinyIcon} />
-        </a>
-
-        {/* Spacer */}
-        <div style={{ flex: 1 }} />
-
-        {/* Connect (AppKit button) */}
-        <ConnectButton />
-
-        {/* Farcaster */}
-        <a
-          href="https://farcaster.xyz/wenaltszn.eth"
-          target="_blank"
-          rel="noreferrer"
-          style={pill()}
-          aria-label="Farcaster"
-        >
-          <img src="/farcaster.png" alt="farcaster" style={tinyIcon} />
-          @wenaltszn.eth
-        </a>
-
-        {/* GitHub */}
-        <a
-          href="https://github.com/wenalt"
-          target="_blank"
-          rel="noreferrer"
-          style={pill()}
-          aria-label="GitHub"
-        >
-          <img src="/github.png" alt="github" style={tinyIcon} />
-          wenalt
-        </a>
-
-        {/* Theme toggle */}
-        <button onClick={cycleTheme} style={pill()} aria-label="Theme">
-          <span role="img" aria-label="theme">🌗</span>
-          {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
-        </button>
-      </header>
-
-      {/* SECTION WALLET — remplace le contenu central, style “carte” comme Celo Lite */}
-      <section style={{ width: '100%' }}>
-        <div
+        {/* HEADER - inchange */}
+        <header
           style={{
             width: '100%',
             maxWidth: 1100,
-            margin: '10px auto 0',
-            padding: '18px 14px',
-            borderRadius: 16,
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
-            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-            backdropFilter: 'blur(8px)',
-            textAlign: 'center'
+            margin: '0 auto',
+            padding: '16px 16px 6px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12
           }}
         >
-          <div style={{ fontWeight: 800, marginBottom: 4 }}>Wallet</div>
-          <div style={{ opacity: 0.9 }}>Connect to show status.</div>
-          <WalletStatus />
-          <DailyCheckin />
-        </div>
-      </section>
+          {/* BL icon */}
+          <img
+            src="/baseicon.png"
+            alt="BL"
+            width={32}
+            height={32}
+            style={{ borderRadius: 8, display: 'block' }}
+          />
 
-      {/* SECTION ECOSYSTEM */}
-      <section style={{ width: '100%' }}>
-        <div
-          style={{
-            width: '100%',
-            maxWidth: 1100,
-            margin: '10px auto 0',
-            padding: '18px 14px',
-            borderRadius: 16,
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
-            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-            backdropFilter: 'blur(8px)',
-            textAlign: 'center'
-          }}
-        >
-          <div style={{ fontWeight: 800, marginBottom: 6 }}>Ecosystem</div>
-          <div style={{ opacity: 0.9, marginBottom: 12 }}>Explore Base resources & tools.</div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
-            {/* NEW: Superchain Eco S8 button (first ecosystem button) */}
-            <a
-              className="btn-superchain-eco-s8"
-              href="https://account.superchain.eco/campaigns/s8-superchain-eco"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-              title="Superchain Eco S8 (Ended)"
-            >
-              Superchain Eco S8 (Ended)
-            </a>
-
-            <a
-              className="btn-base-ecosystem"
-              href="https://www.base.org/ecosystem"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-              title="Base Ecosystem"
-            >
-              Base Ecosystem
-            </a>
-
-            <a
-              className="btn-base-names"
-              href="https://www.base.org/name/"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-              title="Base Names"
-            >
-              Base Names
-            </a>
-
-            <a
-              className="btn-base-app"
-              href="https://join.base.app/"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-              title="Base App"
-            >
-              Base App
-            </a>
-
-            <a
-              className="btn-base-build"
-              href="https://www.base.org/build"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-              title="Base Build"
-            >
-              Base Build
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* DEFI */}
-      <section style={{ width: '100%' }}>
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: '10px auto 0',
-            padding: '18px 14px',
-            borderRadius: 16,
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
-            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-            backdropFilter: 'blur(8px)',
-            textAlign: 'center'
-          }}
-        >
-          <div style={{ fontWeight: 800, marginBottom: 6 }}>DeFi</div>
-          <div style={{ opacity: 0.9, marginBottom: 12 }}>
-            Base-native DeFi protocols.
+          {/* Title + subtitle */}
+          <div style={{ lineHeight: 1.05, marginRight: 4 }}>
+            <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
+              Base Lite
+            </div>
+            <div style={{ fontSize: 12, opacity: 0.9 }}>
+              Ecosystem - Superchain Eco
+            </div>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
-            <a
-              href="https://app.morpho.org/base/earn"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-            >
-              Morpho
-            </a>
+          {/* Superchain Eco (a gauche du header, juste apres le sous-titre) */}
+          <a
+            href="https://www.superchain.eco/"
+            target="_blank"
+            rel="noreferrer"
+            style={pill(true)}
+            aria-label="Superchain Eco"
+            title="Superchain Eco"
+          >
+            <img src="/selogo.png" alt="SE" style={tinyIcon} />
+          </a>
 
-            <a
-              href="https://aerodrome.finance/"
-              target="_blank"
-              rel="noreferrer"
-              style={pill(true)}
-            >
-              Aerodrome
-            </a>
-          </div>
-        </div>
-      </section>
+          {/* Spacer */}
+          <div style={{ flex: 1 }} />
 
-      {/* SECTION BADGES */}
-      <section style={{ width: '100%' }}>
-        <div
-          style={{
-            width: '100%',
-            maxWidth: 1100,
-            margin: '10px auto 0',
-            padding: '18px 14px',
-            borderRadius: 16,
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
-            background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
-            backdropFilter: 'blur(8px)',
-            textAlign: 'center'
-          }}
-        >
-          <div style={{ fontWeight: 800, marginBottom: 6 }}>Badges</div>
-          <div style={{ opacity: 0.9, marginBottom: 12 }}>
-            Short, Base-aligned explanations to earn Superchain Eco badges with confidence.
-          </div>
-          <div style={{ marginTop: 10 }}>
-            <BadgesSection />
-          </div>
-        </div>
-      </section>
+          {/* Connect (AppKit button) */}
+          <ConnectButton />
 
-      <Footer />
-    </div>
+          {/* Farcaster */}
+          <a
+            href="https://farcaster.xyz/wenaltszn.eth"
+            target="_blank"
+            rel="noreferrer"
+            style={pill()}
+            aria-label="Farcaster"
+          >
+            <img src="/farcaster.png" alt="farcaster" style={tinyIcon} />
+            @wenaltszn.eth
+          </a>
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/wenalt"
+            target="_blank"
+            rel="noreferrer"
+            style={pill()}
+            aria-label="GitHub"
+          >
+            <img src="/github.png" alt="github" style={tinyIcon} />
+            wenalt
+          </a>
+
+          {/* Theme toggle */}
+          <button onClick={cycleTheme} style={pill()} aria-label="Theme">
+            <span role="img" aria-label="theme">🌗</span>
+            {theme === 'auto' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light'}
+          </button>
+        </header>
+
+        {/* SECTION WALLET - remplace le contenu central, style "carte" comme Celo Lite */}
+        <section style={{ width: '100%' }}>
+          <div
+            style={{
+              width: '100%',
+              maxWidth: 1100,
+              margin: '10px auto 0',
+              padding: '18px 14px',
+              borderRadius: 16,
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+              background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+              backdropFilter: 'blur(8px)',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontWeight: 800, marginBottom: 4 }}>Wallet</div>
+            <div style={{ opacity: 0.9 }}>Connect to show status.</div>
+            <WalletStatus />
+            <DailyCheckin />
+          </div>
+        </section>
+
+        {/* SECTION ECOSYSTEM */}
+        <section style={{ width: '100%' }}>
+          <div
+            style={{
+              width: '100%',
+              maxWidth: 1100,
+              margin: '10px auto 0',
+              padding: '18px 14px',
+              borderRadius: 16,
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+              background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+              backdropFilter: 'blur(8px)',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontWeight: 800, marginBottom: 6 }}>Ecosystem</div>
+            <div style={{ opacity: 0.9, marginBottom: 12 }}>Explore Base resources & tools.</div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
+              {/* NEW: Superchain Eco S8 button (first ecosystem button) */}
+              <a
+                className="btn-superchain-eco-s8"
+                href="https://account.superchain.eco/campaigns/s8-superchain-eco"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+                title="Superchain Eco S8 (Ended)"
+              >
+                Superchain Eco S8 (Ended)
+              </a>
+
+              <a
+                className="btn-base-ecosystem"
+                href="https://www.base.org/ecosystem"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+                title="Base Ecosystem"
+              >
+                Base Ecosystem
+              </a>
+
+              <a
+                className="btn-base-names"
+                href="https://www.base.org/name/"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+                title="Base Names"
+              >
+                Base Names
+              </a>
+
+              <a
+                className="btn-base-app"
+                href="https://join.base.app/"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+                title="Base App"
+              >
+                Base App
+              </a>
+
+              <a
+                className="btn-base-build"
+                href="https://www.base.org/build"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+                title="Base Build"
+              >
+                Base Build
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* DEFI */}
+        <section style={{ width: '100%' }}>
+          <div
+            style={{
+              maxWidth: 1100,
+              margin: '10px auto 0',
+              padding: '18px 14px',
+              borderRadius: 16,
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+              background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+              backdropFilter: 'blur(8px)',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontWeight: 800, marginBottom: 6 }}>DeFi</div>
+            <div style={{ opacity: 0.9, marginBottom: 12 }}>
+              Base-native DeFi protocols.
+            </div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
+              <a
+                href="https://app.morpho.org/base/earn"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+              >
+                Morpho
+              </a>
+
+              <a
+                href="https://aerodrome.finance/"
+                target="_blank"
+                rel="noreferrer"
+                style={pill(true)}
+              >
+                Aerodrome
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION BADGES */}
+        <section style={{ width: '100%' }}>
+          <div
+            style={{
+              width: '100%',
+              maxWidth: 1100,
+              margin: '10px auto 0',
+              padding: '18px 14px',
+              borderRadius: 16,
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.16)'}`,
+              background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.20)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.20)',
+              backdropFilter: 'blur(8px)',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontWeight: 800, marginBottom: 6 }}>Badges</div>
+            <div style={{ opacity: 0.9, marginBottom: 12 }}>
+              Short, Base-aligned explanations to earn Superchain Eco badges with confidence.
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <BadgesSection />
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
   )
 }
