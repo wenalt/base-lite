@@ -160,19 +160,42 @@ export default function App({ Component, pageProps }) {
           }
         `}</style>
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.__setTheme = function(t){
-                try {
-                  localStorage.setItem('theme', t);
-                  document.documentElement.dataset.theme = t;
-                } catch(e){}
-              }
-            `,
-          }}
-        />
-      </>
+return (
+  <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/baseicon.png" />
+      <meta property="og:image" content="/baseog.png" />
+      <meta name="theme-color" content="#0052FF" />
+      <meta
+        name="talentapp:project_verification"
+        content="bd056401bc9ffc61f41ae5168f8937b1a3ed5ef03fbf49fbee8e08932dd4fd72e530d78f6baa211546a159d6111653fa00c075262417d50b3f23c08aa7bfa47b"
+        key="talentapp-project-verification"
+      />
+      <meta name="fc:frame" content="vNext" />
+      <meta name="fc:miniapp" content="v1" />
+      <title>Base Lite</title>
+    </Head>
+
+    <AppKitProvider>
+      <Component {...pageProps} />
+
+      <style jsx global>{`
+        /* garde ici ton style global existant tel quel */
+      `}</style>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.__setTheme = function(t){
+              try {
+                localStorage.setItem('theme', t);
+                document.documentElement.dataset.theme = t;
+              } catch(e){}
+            }
+          `,
+        }}
+      />
     </AppKitProvider>
-  )
-}
+  </>
+)
