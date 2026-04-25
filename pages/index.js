@@ -66,6 +66,7 @@ export default function Home() {
         <meta
           name="talentapp:project_verification"
           content="bd056401bc9ffc61f41ae5168f8937b1a3ed5ef03fbf49fbee8e08932dd4fd72e530d78f6baa211546a159d6111653fa00c075262417d50b3f23c08aa7bfa47b"
+          key="talentapp-project-verification"
         />
       </Head>
 
